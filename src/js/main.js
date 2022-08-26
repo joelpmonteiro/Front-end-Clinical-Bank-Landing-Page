@@ -1,13 +1,13 @@
-import "./style.css";
-import javascriptLogo from "./javascript.svg";
-import logo from "./public/img/logo.png";
-import doctorWidth from "./public/img/doctor-svgrepo-com.svg";
-import ambulance from "./public/img/ambulance-svgrepo-com.svg";
-import healthCareHospital from "./public/img/health-care-hospital-svgrepo-com.svg";
-import healthCare from "./public/img/health-care-svgrepo-com-face.svg";
-import healthCare2 from "./public/img/health-care-svgrepo-com.svg";
-import healthClinicHealth from "./public/img/health-clinic-health-care-svgrepo-com.svg";
-import healthClinicSyringe from "./public/img/health-clinic-syringe-svgrepo-com.svg";
+import "../css/style.css";
+import javascriptLogo from "../public/javascript.svg";
+import logo from "../public/img/logo.png";
+import doctorWidth from "../public/img/doctor-svgrepo-com.svg";
+import ambulance from "../public/img/ambulance-svgrepo-com.svg";
+import healthCareHospital from "../public/img/health-care-hospital-svgrepo-com.svg";
+import healthCare from "../public/img/health-care-svgrepo-com-face.svg";
+import healthCare2 from "../public/img/health-care-svgrepo-com.svg";
+import healthClinicHealth from "../public/img/health-clinic-health-care-svgrepo-com.svg";
+import healthClinicSyringe from "../public/img/health-clinic-syringe-svgrepo-com.svg";
 
 import { buttonClickGetCardCredit } from "./axios.js";
 
