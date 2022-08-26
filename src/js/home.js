@@ -23,4 +23,4 @@ document.querySelector("#app_btn").innerHTML = `
     </section>
 `;
 
-console.log(`${window.location.href}ConsulteCredito/credito.html`);
+//console.log(`${window.location.href}ConsulteCredito/credito.html`);

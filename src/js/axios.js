@@ -9,10 +9,13 @@ const api = axios.create({
   },
 });
 
-function replaceExistDomSpan(creditoAprovado) {
-  document.querySelector(
-    ".sub-text-element"
-  ).textContent = `Credito Aprovado no momento: ${creditoAprovado}`;
+function replaceExistDomSpan(msg, creditoAprovado) {
+  console.log(typeof creditoAprovado);
+  if (creditoAprovado !== "" && creditoAprovado !== undefined)
+    document.querySelector(
+      ".sub-text-element"
+    ).textContent = `${msg} ${creditoAprovado}`;
+  else document.querySelector(".sub-text-element").textContent = `${msg}`;
 }
 
 function createElementSpan(msg) {
@@ -22,6 +25,20 @@ function createElementSpan(msg) {
   const spaceCpf = document.querySelector(".space-cpf");
   spaceCpf.querySelector("#cpfdiv").appendChild(span);
 }
+
+// function checkIfExistClassSub_text_element(creditoAprovado) {
+//   const domExist = document.body.contains(
+//     document.querySelector(".sub-text-element")
+//   );
+
+//   if (!domExist) {
+//     createElementSpan(`Credito Aprovado no momento: ${creditoAprovado}`);
+//     //
+//   } else {
+//     //replace text span
+//     replaceExistDomSpan(creditoAprovado);
+//   }
+// }
 
 export function buttonClickGetCardCredit(elementBtn) {
   elementBtn.addEventListener("click", (el) => {
@@ -35,16 +52,15 @@ export function buttonClickGetCardCredit(elementBtn) {
       api
         .get(`loan/buscarPorCPF/${data}`)
         .then((result) => {
-          console.log(result);
+          //verifica se o element existe na tela
+          const domExist = document.body.contains(
+            document.querySelector(".sub-text-element")
+          );
+
           if (result.data.sucesso && result.data.codigo === 200) {
             //Valor desestruturado
             const { valor_aprovado, valor_aprovado_string } =
               result.data.proposta;
-
-            //verifica se o element existe na tela
-            const domExist = document.body.contains(
-              document.querySelector(".sub-text-element")
-            );
 
             const creditoAprovado = valor_aprovado_string;
 
@@ -55,11 +71,18 @@ export function buttonClickGetCardCredit(elementBtn) {
               //
             } else {
               //replace text span
-              replaceExistDomSpan(creditoAprovado);
+              replaceExistDomSpan(
+                "Credito Aprovado no momento:",
+                creditoAprovado
+              );
             }
           } else {
+            if (!domExist) {
+              createElementSpan(`Não existe credito aprovado para seu cpf`);
+            } else {
+              replaceExistDomSpan("Não existe credito aprovado para seu cpf");
+            }
             //caso exista um elemento span eu so dou um replace na msg
-            createElementSpan(`Não existe credito aprovado para seu cpf`);
             //
           }
         })
@@ -73,13 +96,4 @@ export function buttonClickGetCardCredit(elementBtn) {
       alert("Erro ao consultar credito aprovado");
     }
   });
-  // element.addEventListener("click", (el) => {
-  //   try {
-  //     console.log(el);
-  //     // const data = cpf.replace(/\D/g, "");
-  //     // api.get(`loan/buscarPorCPF/${data}`);
-  //   } catch (error) {
-  //     console.log(error);
-  //   }
-  // });
 }
