@@ -10,7 +10,6 @@ const api = axios.create({
 });
 
 function replaceExistDomSpan(msg, creditoAprovado) {
-  console.log(typeof creditoAprovado);
   if (creditoAprovado !== "" && creditoAprovado !== undefined)
     document.querySelector(
       ".sub-text-element"

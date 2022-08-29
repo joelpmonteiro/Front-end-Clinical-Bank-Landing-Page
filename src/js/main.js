@@ -18,6 +18,13 @@ document.querySelector("#app").innerHTML = `
           <img alt='logo' class='img-width' src="${logo}" />
         </div>
       </div>
+      <div class='d-flex flex-row-reverse'>
+          <a href='${window.location.origin}' class="btn btn-md btn-outline-primary">
+            <i class="bi bi-arrow-left"></i> 
+              Voltar
+            </a>
+    
+        </div>
     </nav>
     <hr class='separator '/>
     <main class='container container-sm container-md container-lg my-5' >

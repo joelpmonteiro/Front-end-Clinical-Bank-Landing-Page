@@ -6,7 +6,15 @@ document.querySelector("#app_btn").innerHTML = `
       <div class='col-sm-2 logo'>
         <div class='header-right'>
           <img alt='logo' class='img-width' src="${logo}" />
+          
         </div>
+      </div>
+      <div class='d-flex flex-row-reverse'>
+      <a href='${window.location.host}' class="btn btn-md btn-outline-primary">
+        <i class="bi bi-arrow-left"></i> 
+        Voltar
+      </a>
+    
       </div>
     </nav>
     <hr class='separator '/>
