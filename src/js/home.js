@@ -30,5 +30,3 @@ document.querySelector("#app_btn").innerHTML = `
             </div>
     </section>
 `;
-
-console.log(env.VITE_AuthenticationPassword);

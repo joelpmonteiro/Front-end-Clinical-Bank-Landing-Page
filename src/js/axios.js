@@ -1,6 +1,5 @@
 import axios from "axios";
 import { data, formatDate } from "./neurotech";
-import Swal from "sweetalert2";
 
 const data_user = [
   {
@@ -17,14 +16,10 @@ const data_user = [
   },
 ];
 
-console.log("neurotechDados: ", data);
-
-//const apiKey = "a967-a201-35c0-7352-9034b";
 const api = axios.create({
   baseURL: "https://dr-clinicalbank-prd.neurotech.com.br/",
   headers: {
     "Content-type": "application/json",
-    // "X-API-KEY": apiKey,
   },
 });
 
@@ -57,16 +52,6 @@ function createElementSpan(msg) {
   //spaceCpf.querySelector("#cpfdiv").appendChild(createElement(msg[2]));
 }
 
-//Função para enviar os dados da consulta em nosso banco de dados ?
-async function sendGetCardCreditDataUser({ data }) {
-  try {
-    const dataCreditCard = await api.post("endpointx", data);
-  } catch (error) {
-    console.log(error);
-    alert("Erro ao enviar os dados para nosso banco e dados!");
-  }
-}
-
 export function buttonClickGetCardCredit(elementBtn) {
   elementBtn.addEventListener("click", (el) => {
     el.preventDefault();
@@ -97,7 +82,6 @@ export function buttonClickGetCardCredit(elementBtn) {
             const domExist = document.body.contains(
               document.querySelector(".sub-text-element")
             );
-            console.log(domExist);
             if (
               result.status === 200 /*&&
               result.data.Result.Result !== "REPROVADO"*/

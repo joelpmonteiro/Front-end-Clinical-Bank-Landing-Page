@@ -7,8 +7,8 @@ export const data = {
     Version: "V2.0",
   },
   Authentication: {
-    Login: env.VITE_AuthenticationLogin,
-    Password: env.VITE_AuthenticationPassword,
+    Login: import.meta.env.VITE_AuthenticationLogin,
+    Password: import.meta.env.VITE_AuthenticationPassword,
     Properties: [
       {
         Key: "FILIAL_ID",

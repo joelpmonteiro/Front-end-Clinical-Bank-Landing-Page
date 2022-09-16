@@ -1,5 +1,5 @@
 import "../css/style.css";
-import javascriptLogo from "/javascript.svg";
+//import javascriptLogo from "/javascript.svg";
 import logo from "/img/logo.png";
 import doctorWidth from "/img/doctor-svgrepo-com.svg";
 import ambulance from "/img/ambulance-svgrepo-com.svg";
@@ -9,7 +9,7 @@ import healthCare2 from "/img/health-care-svgrepo-com.svg";
 import healthClinicHealth from "/img/health-clinic-health-care-svgrepo-com.svg";
 import healthClinicSyringe from "/img/health-clinic-syringe-svgrepo-com.svg";
 
-import { buttonClickGetCardCredit } from "./axios.js";
+import { buttonClickGetCardCredit } from "./axios";
 
 document.querySelector("#app").innerHTML = `
     <nav class='navbar container p-2'>
@@ -112,10 +112,3 @@ document.querySelector("#app").innerHTML = `
 `;
 
 buttonClickGetCardCredit(document.querySelector("#button-addon2"));
-
-// <footer class="text-center">
-//   <div>
-//     <strong>&copy; Copyright 2022 Fuston Services.</strong> Todos os
-//     Direitos Reservados.
-//   </div>
-// </footer>;
