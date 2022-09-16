@@ -26,6 +26,25 @@ body{
   background: linear-gradient(300.76deg, rgba(177, 177, 177, 0.51) -15.24%, #FFFFFF 78.85%);
 } 
 
+.loading div {
+  width: 1rem;
+  height: 1rem;
+  margin: 2rem 0.3rem;
+  background: #979fd0;
+  border-radius: 50%;
+  -webkit-animation: 0.9s bounce infinite alternate;
+  animation: 0.9s bounce infinite alternate;
+}
+
+.loading div:nth-child(2) {
+  -webkit-animation-delay: 0.3s;
+  animation-delay: 0.3s;
+}
+
+.loading div:nth-child(3) {
+  -webkit-animation-delay: 0.6s;
+  animation-delay: 0.6s;
+}
 
 #app{
     height: calc(var(--vh,1vh) * 100);
@@ -90,8 +109,8 @@ body{
   height: 10px;
   font-style: normal;
   font-weight: 700;
-  font-size: 25px;
-  line-height: 25px;
+  font-size: 20px;
+  line-height: 30px;
   color: black;
   letter-spacing: 0.1px;
 }

@@ -1,5 +1,5 @@
 import "../css/style.css";
-import logo from "../public/img/logo.png";
+import logo from "/img/logo.png";
 
 document.querySelector("#app_btn").innerHTML = `
     <nav class='navbar container p-2'>
@@ -10,7 +10,7 @@ document.querySelector("#app_btn").innerHTML = `
         </div>
       </div>
       <div class='d-flex flex-row-reverse'>
-      <a href='${window.location.host}' class="btn btn-md btn-outline-primary">
+        <a href='${window.location.host}' class="btn btn-md btn-outline-primary">
         <i class="bi bi-arrow-left"></i> 
         Voltar
       </a>
@@ -31,4 +31,4 @@ document.querySelector("#app_btn").innerHTML = `
     </section>
 `;
 
-//console.log(`${window.location.href}ConsulteCredito/credito.html`);
+console.log(env.VITE_AuthenticationPassword);

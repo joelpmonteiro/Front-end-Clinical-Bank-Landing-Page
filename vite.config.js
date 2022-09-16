@@ -1,8 +1,11 @@
 import { resolve } from "path";
-import { defineConfig } from "vite";
+import { defineConfig, loadEnv } from "vite";
 
 export default defineConfig({
   root: "src",
+  define: {
+    env: loadEnv("mode", process.cwd(), ""),
+  },
   build: {
     outDir: "../dist",
     rollupOptions: {

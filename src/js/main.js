@@ -1,13 +1,13 @@
 import "../css/style.css";
-import javascriptLogo from "../public/javascript.svg";
-import logo from "../public/img/logo.png";
-import doctorWidth from "../public/img/doctor-svgrepo-com.svg";
-import ambulance from "../public/img/ambulance-svgrepo-com.svg";
-import healthCareHospital from "../public/img/health-care-hospital-svgrepo-com.svg";
-import healthCare from "../public/img/health-care-svgrepo-com-face.svg";
-import healthCare2 from "../public/img/health-care-svgrepo-com.svg";
-import healthClinicHealth from "../public/img/health-clinic-health-care-svgrepo-com.svg";
-import healthClinicSyringe from "../public/img/health-clinic-syringe-svgrepo-com.svg";
+import javascriptLogo from "/javascript.svg";
+import logo from "/img/logo.png";
+import doctorWidth from "/img/doctor-svgrepo-com.svg";
+import ambulance from "/img/ambulance-svgrepo-com.svg";
+import healthCareHospital from "/img/health-care-hospital-svgrepo-com.svg";
+import healthCare from "/img/health-care-svgrepo-com-face.svg";
+import healthCare2 from "/img/health-care-svgrepo-com.svg";
+import healthClinicHealth from "/img/health-clinic-health-care-svgrepo-com.svg";
+import healthClinicSyringe from "/img/health-clinic-syringe-svgrepo-com.svg";
 
 import { buttonClickGetCardCredit } from "./axios.js";
 
@@ -47,8 +47,18 @@ document.querySelector("#app").innerHTML = `
               <div class="col-10 col-sm-6 col-md-6 col-lg-8" id='cpfdiv'>
                   <form id="formCPF" method="post" >
                     <div class="input-group  mb-3">
-                      <input type="text" value='' class='form-control border-radius' placeholder='Digite seu cpf' aria-label="digite seu cpf" aria-describedby="basic-addon2">
-                       <button class="btn txt-background text-white" type="submit" id="button-addon2" style='margin-left: -10px;border-radius:12px'>Consultar</button>
+                      <input type="text" value='' class='form-control border-radius nome' placeholder='Digite seu nome' aria-label="digite seu nome" aria-describedby="basic-addon2">
+                    </div>
+                    <div class="input-group  mb-3">
+                      <input type="date"  value='' class='form-control border-radius data' placeholder='DD/MM/YYYY' aria-label="digite data de nascimento" aria-describedby="basic-addon2">
+                    </div>  
+                    <div class="input-group  mb-3">
+                      <input type="text" value=''  class='form-control border-radius cpf' placeholder='Digite seu cpf' aria-label="digite seu cpf" aria-describedby="basic-addon2">
+                    </div>
+
+                    <div class='p-2 mb-3'>
+                      <button class="btn txt-background text-white" type="submit" id="button-addon2" style='margin-left: -10px;border-radius:12px'>
+                       <span class="spinner-border spinner-border-sm d-none"></span> Consultar</button>
                     </div>
                   </form>
               </div>
