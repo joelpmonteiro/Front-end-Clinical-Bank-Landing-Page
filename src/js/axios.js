@@ -1,5 +1,5 @@
 import axios from "axios";
-import { data } from "./neurotech";
+import { data, formatDate } from "./neurotech";
 import Swal from "sweetalert2";
 
 const data_user = [
@@ -80,7 +80,7 @@ export function buttonClickGetCardCredit(elementBtn) {
       const inputNome = form.querySelector(".form-control.border-radius.nome");
       const inputData = form.querySelector(".form-control.border-radius.data");
       const inputCPF = form.querySelector(".form-control.border-radius.cpf");
-
+      const nDate = formatDate(new Date(inputData.value));
       if (
         inputCPF.value !== "" &&
         inputData.value !== "" &&
