@@ -45,10 +45,14 @@ function createElementSpan(msg) {
     .querySelector("#cpfdiv")
     .appendChild(createElement(msg[0] === "" ? "0.00" : msg[0]));
   spaceCpf.querySelector("#cpfdiv").appendChild(document.createElement("br"));
-  spaceCpf
-    .querySelector("#cpfdiv")
-    .appendChild(createElement(msg[1] === "" ? "0.00" : msg[1]));
-  spaceCpf.querySelector("#cpfdiv").appendChild(document.createElement("br"));
+
+  if (msg[1] !== "" && msg[1] !== undefined) {
+    spaceCpf
+      .querySelector("#cpfdiv")
+      .appendChild(createElement(msg[1] === "" ? "0.00" : msg[1]));
+    spaceCpf.querySelector("#cpfdiv").appendChild(document.createElement("br"));
+  }
+
   //spaceCpf.querySelector("#cpfdiv").appendChild(createElement(msg[2]));
 }
 
@@ -83,8 +87,8 @@ export function buttonClickGetCardCredit(elementBtn) {
               document.querySelector(".sub-text-element")
             );
             if (
-              result.status === 200 /*&&
-              result.data.Result.Result !== "REPROVADO"*/
+              result.status === 200 &&
+              result.data.Result.Result !== "REPROVADO"
             ) {
               const { Outputs: outputs } = result.data.Result;
               const proposta = [];
@@ -123,7 +127,6 @@ export function buttonClickGetCardCredit(elementBtn) {
                   `Credito Aprovado no momento: ${proposta[0].value}`,
                   `Valor das parcelas: ${proposta[2].value}`,
                 ]);
-                console.log("teste");
               } else {
                 console.log("entoru aqui ");
                 //replace text span
@@ -134,9 +137,11 @@ export function buttonClickGetCardCredit(elementBtn) {
               }
             } else {
               if (!domExist) {
-                createElementSpan(`Não existe credito aprovado para seu cpf`);
+                createElementSpan([`Não existe credito aprovado para seu cpf`]);
               } else {
-                replaceExistDomSpan("Não existe credito aprovado para seu cpf");
+                replaceExistDomSpan([
+                  "Não existe credito aprovado para seu cpf",
+                ]);
               }
               //caso exista um elemento span eu so dou um replace na msg
               //
