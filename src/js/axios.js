@@ -137,7 +137,10 @@ export function buttonClickGetCardCredit(elementBtn) {
               }
             } else {
               if (!domExist) {
-                createElementSpan([`Não existe credito aprovado para seu cpf`]);
+                createElementSpan([
+                  "Não existe credito aprovado para seu cpf!",
+                  "Em caso de credito não aprovado contate a nossa equipe para verificar a situação.",
+                ]);
               } else {
                 replaceExistDomSpan([
                   "Não existe credito aprovado para seu cpf",
