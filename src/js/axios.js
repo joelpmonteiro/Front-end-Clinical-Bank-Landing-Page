@@ -14,8 +14,12 @@ const data_user = [
     Name: "PROP_NOME",
     Value: null,
   },
+  // {
+  //   Name: "PROP_CPF_BOAVISTA",
+  //   Value: "01183363125",
+  // },
 ];
-
+//13767294826
 const api = axios.create({
   baseURL: "https://dr-clinicalbank-prd.neurotech.com.br/",
   headers: {
@@ -70,13 +74,14 @@ export function buttonClickGetCardCredit(elementBtn) {
       const inputData = form.querySelector(".form-control.border-radius.data");
       const inputCPF = form.querySelector(".form-control.border-radius.cpf");
       const nDate = formatDate(new Date(inputData.value));
+      console.log(nDate);
       if (
         inputCPF.value !== "" &&
         inputData.value !== "" &&
         inputNome.value !== ""
       ) {
         data_user[0].Value = inputCPF.value.replace(/\D/g, "");
-        data_user[1].Value = inputData.value;
+        data_user[1].Value = nDate;
         data_user[2].Value = inputNome.value;
         data.Submit.Inputs = [...data_user];
 

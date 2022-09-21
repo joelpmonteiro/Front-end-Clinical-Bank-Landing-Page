@@ -30,8 +30,8 @@ function padTo2Digits(num) {
 
 export function formatDate(date) {
   return [
-    padTo2Digits(date.getDate() + 1),
-    padTo2Digits(date.getMonth() + 1),
-    date.getFullYear(),
+    padTo2Digits(date.getUTCDate()),
+    padTo2Digits(date.getUTCMonth() + 1),
+    date.getUTCFullYear(),
   ].join("/");
 }
