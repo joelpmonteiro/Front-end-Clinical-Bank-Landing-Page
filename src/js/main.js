@@ -27,7 +27,7 @@ document.querySelector("#app").innerHTML = `
         </div>
     </nav>
     <hr class='separator '/>
-    <main class='container container-sm container-md container-lg my-5' >
+    <section class='container container-sm container-md container-lg my-5' >
         <div class="row">
           <div class="col-sm-6" style='display: grid;place-content: center;'>
             <div class='row'>
@@ -101,7 +101,53 @@ document.querySelector("#app").innerHTML = `
             </div>
           </div>
         </div>
-    </main>
+    </section>
+    <section class='container container-sm container-md container-lg my-5'>
+      
+    </section>
+    <section class='container container-sm container-md container-lg my-5'>
+      <div class='row'>
+        <div class="col-12 col-sm-6 col-md-12 col-lg-12" style='display: grid;place-content: center;'>
+          <span class='text-color'>Consulte o crédito do seu cpf</span>
+
+          <div class='row mt-2'>
+            <div class="d-flex justify-content-center my-2">
+              <span>Adicionar outro cartão ?
+                <button class="btn btn-primary btn-sm" type="submit" style='padding: 0.01rem 0.2rem;border-radius: 0.2em;font-size: .8em;'>
+                  +
+                </button>
+              </span>
+            </div>
+            <div class="d-flex justify-content-center" id='cpfdiv'>
+              <form id="formCredit" method="post" >
+                <div class="input-group  mb-3">
+                  <input type="text" value='' class='form-control border-radius nome' placeholder='Número do cartão' aria-label="Número do cartão" aria-describedby="basic-addon2">
+                </div>
+                <div class="input-group  mb-3">
+                  <input type="text"  value='' class='form-control border-radius data' placeholder='Nome do cartão' aria-label="Nome do cartão" aria-describedby="basic-addon2">
+                </div>  
+                <div class="form-group row  mb-3">
+                  <div class='col-6'>
+                    <input type="text" value=''  class='form-control border-radius cpf' placeholder='Digite seu cpf' aria-label="digite seu cpf" aria-describedby="basic-addon2">
+                  </div> 
+                  <div class='col-6'>
+                    <input type="text" value=''  class='form-control border-radius cpf' placeholder='Digite seu cpf' aria-label="digite seu cpf" aria-describedby="basic-addon2">
+                  </div>    
+                </div>
+                <div class="input-group  mb-3">
+                  <input type="text"  value='' class='form-control border-radius data' placeholder='Parcelas' aria-label="Parcelas" aria-describedby="basic-addon2">
+                </div>
+                <div class='p-2 mb-3'>
+                  <button class="btn txt-background text-white" type="submit" id="button-addon2" style='margin-left: -10px;border-radius:12px'>
+                    <span class="spinner-border spinner-border-sm d-none"></span>Confirmar</button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
 
     <footer class="footer mt-auto py-3 ">
       <div class="container">

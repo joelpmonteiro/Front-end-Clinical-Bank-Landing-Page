@@ -1,0 +1,776 @@
+{
+    "status": "S",
+    "registros": [
+        {
+            "principal": true,
+            "visible": true,
+            "nome": "FLX_PRINCIPAL#1",
+            "descricao": "FLUXO PRINCIPAL DA POLÍTICA",
+            "status": "R",
+            "statusClass": "status-erro",
+            "descricaoAnalitica": "",
+            "viewRegra": [
+                {
+                    "principal": false,
+                    "visible": true,
+                    "nome": "FLX_RESTRICAO_INTERNA#1",
+                    "descricao": "RESTRICAO INTERNA",
+                    "status": "A",
+                    "statusClass": "status-ok",
+                    "descricaoAnalitica": "",
+                    "viewRegra": [
+                        {
+                            "principal": false,
+                            "visible": true,
+                            "nome": "RGR_RI_IDADE_MINIMA#1",
+                            "descricao": "IDADE MENOR QUE 18 ANOS?",
+                            "status": "A",
+                            "statusClass": "status-ok",
+                            "descricaoAnalitica": "",
+                            "entradasRegras": [
+                                {
+                                    "nmParametro": "CALC_RI_IDADE",
+                                    "vlParametro": "47",
+                                    "dsParametro": "CALC_RI_IDADE",
+                                    "ordem": 7.0,
+                                    "visible": true
+                                },
+                                {
+                                    "nmParametro": "VI_IDADE_MINIMA",
+                                    "vlParametro": "18",
+                                    "dsParametro": "VI_IDADE_MINIMA",
+                                    "ordem": 5.0,
+                                    "visible": true
+                                }
+                            ],
+                            "outrasInformacoesRegras": [],
+                            "consultaAssociadas": [],
+                            "visualizarRetornosBranco": true
+                        },
+                        {
+                            "principal": false,
+                            "visible": true,
+                            "nome": "RGR_RI_IDADE_MAXIMA#1",
+                            "descricao": "IDADE MAIOR OU IGUAL A 80 ANOS?",
+                            "status": "A",
+                            "statusClass": "status-ok",
+                            "descricaoAnalitica": "",
+                            "entradasRegras": [
+                                {
+                                    "nmParametro": "CALC_RI_IDADE",
+                                    "vlParametro": "47",
+                                    "dsParametro": "CALC_RI_IDADE",
+                                    "ordem": 7.0,
+                                    "visible": true
+                                },
+                                {
+                                    "nmParametro": "VI_IDADE_MAXIMA",
+                                    "vlParametro": "80",
+                                    "dsParametro": "VI_IDADE_MAXIMA",
+                                    "ordem": 6.0,
+                                    "visible": true
+                                }
+                            ],
+                            "outrasInformacoesRegras": [],
+                            "consultaAssociadas": [],
+                            "visualizarRetornosBranco": true
+                        }
+                    ],
+                    "entradasRegras": [],
+                    "outrasInformacoesRegras": [],
+                    "consultaAssociadas": [],
+                    "visualizarRetornosBranco": true
+                },
+                {
+                    "principal": false,
+                    "visible": true,
+                    "nome": "FLX_RESTRICAO_BASICA#1",
+                    "descricao": "RESTRICAO BASICA",
+                    "status": "A",
+                    "statusClass": "status-ok",
+                    "descricaoAnalitica": "",
+                    "viewRegra": [
+                        {
+                            "principal": false,
+                            "visible": true,
+                            "nome": "RGR_RB_RFPFIMG_SISTEMA_RESPONDE#1",
+                            "descricao": "SISTEMA RESPONDE?",
+                            "status": "A",
+                            "statusClass": "status-ok",
+                            "descricaoAnalitica": "",
+                            "entradasRegras": [],
+                            "outrasInformacoesRegras": [],
+                            "consultaAssociadas": [
+                                {
+                                    "aId": "Pi1IN9Evc+AHNNymq6j8iCjos8KLPdg8AqF3ASr4+JW4odADgaIDQ27QTUL0DjphpVhY6nB5DKOBnTuzYbXZHabQoBzmHsRyc7EXxIQ3ftellxHxeQ/4lE8O0kaxnk5o2lyjGEMAkB7L8qs1IfKy7ZguQ16yHQ1hGmob5Cqelxvk7bpR5+07+tKDLiJ/vt2Qwg9ot8H6YCrBubVekjJmIsaKUnJ2XiLtKSpZSEsjbnwnOrntb3yEWA\u003d\u003d",
+                                    "aNome": "RFPFIMG_CB",
+                                    "aIdLog": "666101760333523944",
+                                    "aStatus": "0100",
+                                    "aDescricao": "RFPFIMG_CB",
+                                    "aDescricaoStatus": "OK",
+                                    "aDataRealizacao": "21/09/2022 15:55:51",
+                                    "aHoraRealizacao": "21/09/2022 15:55:51",
+                                    "aOrigem": "Cache L1",
+                                    "aValidade": -1,
+                                    "aOrdemGatewayContingencia": 0,
+                                    "aUrlGateway": "https://gateway-clinicalbank-prd.neurotech.com.br/services/GATEWAY_WEBSERVICES?wsdl",
+                                    "aDhInicio": {
+                                        "year": 2022,
+                                        "month": 8,
+                                        "dayOfMonth": 21,
+                                        "hourOfDay": 15,
+                                        "minute": 55,
+                                        "second": 50
+                                    },
+                                    "aDhFim": {
+                                        "year": 2022,
+                                        "month": 8,
+                                        "dayOfMonth": 21,
+                                        "hourOfDay": 15,
+                                        "minute": 55,
+                                        "second": 51
+                                    },
+                                    "aLsResultado": [
+                                        {
+                                            "nmParametro": "GTWR_RFPFIMG_CB_Nome",
+                                            "vlParametro": "FABIANO ALVES DOS PASSOS",
+                                            "dsParametro": "Nome",
+                                            "ordem": 1.0,
+                                            "visible": true
+                                        },
+                                        {
+                                            "nmParametro": "GTWR_RFPFIMG_CB_NomeSocial",
+                                            "vlParametro": "NAO_INFORMADO",
+                                            "dsParametro": "Nome Social",
+                                            "ordem": 2.0,
+                                            "visible": true
+                                        },
+                                        {
+                                            "nmParametro": "GTWR_RFPFIMG_CB_Situacao",
+                                            "vlParametro": "REGULAR",
+                                            "dsParametro": "Situação",
+                                            "ordem": 3.0,
+                                            "visible": true
+                                        },
+                                        {
+                                            "nmParametro": "GTWR_RFPFIMG_CB_Hora",
+                                            "vlParametro": "15:46:45.000",
+                                            "dsParametro": "Hora Consulta",
+                                            "ordem": 4.0,
+                                            "visible": true
+                                        },
+                                        {
+                                            "nmParametro": "GTWR_RFPFIMG_CB_Data",
+                                            "vlParametro": "21/09/2022",
+                                            "dsParametro": "Data Consulta",
+                                            "ordem": 5.0,
+                                            "visible": true
+                                        },
+                                        {
+                                            "nmParametro": "GTWR_RFPFIMG_CB_ComprovanteAuntenticidade",
+                                            "vlParametro": "8D85.CDDF.D49C.01DA",
+                                            "dsParametro": "Comprovante de Autenticidade",
+                                            "ordem": 6.0,
+                                            "visible": true
+                                        },
+                                        {
+                                            "nmParametro": "GTWR_RFPFIMG_CB_Cpf",
+                                            "vlParametro": "13767294826",
+                                            "dsParametro": "Cpf",
+                                            "ordem": 7.0,
+                                            "visible": true
+                                        },
+                                        {
+                                            "nmParametro": "GTWR_RFPFIMG_CB_DataInscricao",
+                                            "vlParametro": "10/05/1991",
+                                            "dsParametro": "Data Inscricao",
+                                            "ordem": 10.0,
+                                            "visible": true
+                                        },
+                                        {
+                                            "nmParametro": "GTWR_RFPFIMG_CB_DataNascimento",
+                                            "vlParametro": "25/06/1975",
+                                            "dsParametro": "Data Nascimento",
+                                            "ordem": 11.0,
+                                            "visible": true
+                                        },
+                                        {
+                                            "nmParametro": "GTWR_RFPFIMG_CB_DigitoVerificador",
+                                            "vlParametro": "00",
+                                            "dsParametro": "Digito Verificador",
+                                            "ordem": 12.0,
+                                            "visible": true
+                                        },
+                                        {
+                                            "nmParametro": "GTWR_RFPFIMG_CB_anoObito",
+                                            "vlParametro": "0000",
+                                            "dsParametro": "Ano Obito",
+                                            "ordem": 13.0,
+                                            "visible": true
+                                        }
+                                    ],
+                                    "aLsParametro": [
+                                        {
+                                            "nmParametro": "GTWE_RFPFIMG_CB_HabilitarPool",
+                                            "vlParametro": "",
+                                            "dsParametro": "Flag que indica se o sistema de pool sera usado",
+                                            "ordem": 1.0,
+                                            "visible": true
+                                        },
+                                        {
+                                            "nmParametro": "GTWE_RFPFIMG_CB_ProxyPool",
+                                            "vlParametro": "",
+                                            "dsParametro": "Informa o proxy que deve ser usado na geracao de sessoes do pool",
+                                            "ordem": 2.0,
+                                            "visible": true
+                                        },
+                                        {
+                                            "nmParametro": "GTWE_RFPFIMG_CB_CPF",
+                                            "vlParametro": "13767294826",
+                                            "dsParametro": "Cadastro de Pessoa Fisica",
+                                            "ordem": 3.0,
+                                            "visible": true
+                                        },
+                                        {
+                                            "nmParametro": "GTWE_RFPFIMG_CB_datanascimento",
+                                            "vlParametro": "25/06/1975",
+                                            "dsParametro": "Data de Nascimento",
+                                            "ordem": 4.0,
+                                            "visible": true
+                                        },
+                                        {
+                                            "nmParametro": "GTWE_RFPFIMG_CB_modorealizacao",
+                                            "vlParametro": "",
+                                            "dsParametro": "modo de realizacao",
+                                            "ordem": 5.0,
+                                            "visible": true
+                                        },
+                                        {
+                                            "nmParametro": "GTWE_RFPFIMG_CB_modoocr",
+                                            "vlParametro": "",
+                                            "dsParametro": "modo solucao ocr",
+                                            "ordem": 6.0,
+                                            "visible": true
+                                        },
+                                        {
+                                            "nmParametro": "GTWE_RFPFIMG_CB_modocontinuidade",
+                                            "vlParametro": "",
+                                            "dsParametro": "modo de continuidade",
+                                            "ordem": 7.0,
+                                            "visible": true
+                                        },
+                                        {
+                                            "nmParametro": "GTWE_RFPFIMG_CB_flagdisableproxymodoalternativo",
+                                            "vlParametro": "",
+                                            "dsParametro": "Flag responsavel por desabilitar o proxy no modo alternativo",
+                                            "ordem": 10.0,
+                                            "visible": true
+                                        },
+                                        {
+                                            "nmParametro": "GTWE_RFPFIMG_CB_timeouthttpclient",
+                                            "vlParametro": "",
+                                            "dsParametro": "timeout httpclient",
+                                            "ordem": 11.0,
+                                            "visible": true
+                                        },
+                                        {
+                                            "nmParametro": "GTWE_RFPFIMG_CB_urlrftoken",
+                                            "vlParametro": "",
+                                            "dsParametro": "Url do Servico",
+                                            "ordem": 12.0,
+                                            "visible": true
+                                        },
+                                        {
+                                            "nmParametro": "GTWE_RFPFIMG_CB_hostproxyalt",
+                                            "vlParametro": "",
+                                            "dsParametro": "Url do Proxy da via Alternativa",
+                                            "ordem": 13.0,
+                                            "visible": true
+                                        },
+                                        {
+                                            "nmParametro": "GTWE_RFPFIMG_CB_userproxyalt",
+                                            "vlParametro": "",
+                                            "dsParametro": "Usuario do proxy da via alternativa",
+                                            "ordem": 14.0,
+                                            "visible": true
+                                        },
+                                        {
+                                            "nmParametro": "GTWE_RFPFIMG_CB_passproxyalt",
+                                            "vlParametro": "",
+                                            "dsParametro": "Senha do proxy da via alternativa",
+                                            "ordem": 15.0,
+                                            "visible": true
+                                        },
+                                        {
+                                            "nmParametro": "GTWE_RFPFIMG_CB_portproxyalt",
+                                            "vlParametro": "",
+                                            "dsParametro": "Porta do proxy da via alternativa",
+                                            "ordem": 16.0,
+                                            "visible": true
+                                        }
+                                    ],
+                                    "aVisible": true,
+                                    "aOrdem": 0.0
+                                }
+                            ],
+                            "visualizarRetornosBranco": true
+                        },
+                        {
+                            "principal": false,
+                            "visible": true,
+                            "nome": "RGR_RB_RFPFIMG_CADASTRO_LOCALIZADO#1",
+                            "descricao": "CADASTRO LOCALIZADO?",
+                            "status": "A",
+                            "statusClass": "status-ok",
+                            "descricaoAnalitica": "",
+                            "entradasRegras": [],
+                            "outrasInformacoesRegras": [],
+                            "consultaAssociadas": [],
+                            "visualizarRetornosBranco": true
+                        },
+                        {
+                            "principal": false,
+                            "visible": true,
+                            "nome": "RGR_RB_RFPFIMG_DATA_NASCIMENTO_CONFERE#1",
+                            "descricao": "DATA NASCIMENTO CONFERE?",
+                            "status": "A",
+                            "statusClass": "status-ok",
+                            "descricaoAnalitica": "",
+                            "entradasRegras": [
+                                {
+                                    "nmParametro": "PROP_DATA_NASCIMENTO",
+                                    "vlParametro": "25/06/1975",
+                                    "dsParametro": "PROP_DATA_NASCIMENTO",
+                                    "ordem": 3.0,
+                                    "visible": true
+                                }
+                            ],
+                            "retornosRegras": [
+                                {
+                                    "nmParametro": "GTWR_RFPFIMG_CB_DataNascimento",
+                                    "vlParametro": "25/06/1975",
+                                    "dsParametro": "Data Nascimento",
+                                    "ordem": 11.0,
+                                    "visible": true
+                                }
+                            ],
+                            "outrasInformacoesRegras": [],
+                            "consultaAssociadas": [],
+                            "visualizarRetornosBranco": true
+                        },
+                        {
+                            "principal": false,
+                            "visible": true,
+                            "nome": "RGR_RB_RFPFIMG_SITUACAO_CADASTRAL#1",
+                            "descricao": "SITUACAO DO CPF É REGULAR?",
+                            "status": "A",
+                            "statusClass": "status-ok",
+                            "descricaoAnalitica": "",
+                            "entradasRegras": [],
+                            "retornosRegras": [
+                                {
+                                    "nmParametro": "GTWR_RFPFIMG_CB_Situacao",
+                                    "vlParametro": "REGULAR",
+                                    "dsParametro": "Situação",
+                                    "ordem": 3.0,
+                                    "visible": true
+                                }
+                            ],
+                            "outrasInformacoesRegras": [],
+                            "consultaAssociadas": [],
+                            "visualizarRetornosBranco": true
+                        },
+                        {
+                            "principal": false,
+                            "visible": true,
+                            "nome": "RGR_RB_RFPFIMG_COMPARACAO_FONETICA_NOME#1",
+                            "descricao": "COMPARACAO FONETICA É MAIOR OU IGUAL A 70%?",
+                            "status": "A",
+                            "statusClass": "status-ok",
+                            "descricaoAnalitica": "",
+                            "entradasRegras": [
+                                {
+                                    "nmParametro": "CALC_RB_RFPFIMG_COMPARACAO_FONETICA_NOME",
+                                    "vlParametro": "0.83",
+                                    "dsParametro": "CALC_RB_RFPFIMG_COMPARACAO_FONETICA_NOME",
+                                    "ordem": 16.0,
+                                    "visible": true
+                                },
+                                {
+                                    "nmParametro": "VI_RB_RFPF_COMPARACAO_FONETICA_NOME",
+                                    "vlParametro": "0.70",
+                                    "dsParametro": "VI_RB_RFPF_COMPARACAO_FONETICA_NOME",
+                                    "ordem": 17.0,
+                                    "visible": true
+                                }
+                            ],
+                            "outrasInformacoesRegras": [],
+                            "consultaAssociadas": [],
+                            "visualizarRetornosBranco": true
+                        },
+                        {
+                            "principal": false,
+                            "visible": true,
+                            "nome": "RGR_RB_RFPFIMG_CONSTA_OBITO#1",
+                            "descricao": "CONSTA OBITO?",
+                            "status": "A",
+                            "statusClass": "status-ok",
+                            "descricaoAnalitica": "",
+                            "entradasRegras": [
+                                {
+                                    "nmParametro": "CALC_RB_RFPFIMG_CONSTA_OBITO",
+                                    "vlParametro": "N",
+                                    "dsParametro": "CALC_RB_RFPFIMG_CONSTA_OBITO",
+                                    "ordem": 20.0,
+                                    "visible": true
+                                }
+                            ],
+                            "retornosRegras": [
+                                {
+                                    "nmParametro": "GTWR_RFPFIMG_CB_anoObito",
+                                    "vlParametro": "0000",
+                                    "dsParametro": "Ano Obito",
+                                    "ordem": 13.0,
+                                    "visible": true
+                                }
+                            ],
+                            "outrasInformacoesRegras": [],
+                            "consultaAssociadas": [],
+                            "visualizarRetornosBranco": true
+                        }
+                    ],
+                    "entradasRegras": [
+                        {
+                            "nmParametro": "FLAG_TEMP_R",
+                            "vlParametro": "N",
+                            "dsParametro": "FLAG_TEMP_R",
+                            "ordem": 25.0,
+                            "visible": true
+                        },
+                        {
+                            "nmParametro": "FLAG_TEMP_P",
+                            "vlParametro": "N",
+                            "dsParametro": "FLAG_TEMP_P",
+                            "ordem": 26.0,
+                            "visible": true
+                        },
+                        {
+                            "nmParametro": "FLAG_TEMP_F",
+                            "vlParametro": "N",
+                            "dsParametro": "FLAG_TEMP_F",
+                            "ordem": 24.0,
+                            "visible": true
+                        }
+                    ],
+                    "outrasInformacoesRegras": [],
+                    "consultaAssociadas": [],
+                    "visualizarRetornosBranco": true
+                },
+                {
+                    "principal": false,
+                    "visible": true,
+                    "nome": "FLX_RESTRICAO_EXTERNA#1",
+                    "descricao": "RESTRICAO EXTERNA",
+                    "status": "R",
+                    "statusClass": "status-erro",
+                    "descricaoAnalitica": "",
+                    "viewRegra": [
+                        {
+                            "principal": false,
+                            "visible": true,
+                            "nome": "RGR_RE_SCORE_RESTRITIVO_SISTEMA_RESPONDE#1",
+                            "descricao": "RESTRITIVO - CONSULTA REALIZADA COM SUCESSO?",
+                            "status": "A",
+                            "statusClass": "status-ok",
+                            "descricaoAnalitica": "",
+                            "entradasRegras": [],
+                            "outrasInformacoesRegras": [],
+                            "consultaAssociadas": [
+                                {
+                                    "aId": "shIujWzwmX0+Kv/xk0rq4f7BpV9baugyAqF3ASr4+JW61IH/VHm0Gj/y5fDIqD05Ro6Q3pq4AwbZ95sJ13InLPlGJqA3wi+m5/cJDpIpnzAPFbBCF2bQSb1CnG59yDSX7QKokbdLzK/kTSZZCWCm7xLXSzS522yA9bcreu2q3CTksICoAC3/nL2B3Ng/u5Yvf7RftJDLQzFF79zAg5wfjoD4Bc6L3TyCXR1V3xoqnlLNXkcSqltsjJHCJRRWQXrmP0fzqAN3ZV/oIvEAnAFcbQ\u003d\u003d",
+                                    "aNome": "BOAVISTASCOREPOSITIVOPFV2_RESTRITIVO",
+                                    "aIdLog": "285272990213673504",
+                                    "aStatus": "0100",
+                                    "aDescricao": "BOAVISTASCOREPOSITIVOPFV2_RESTRITIVO",
+                                    "aDescricaoStatus": "OK",
+                                    "aDataRealizacao": "21/09/2022 15:55:51",
+                                    "aHoraRealizacao": "21/09/2022 15:55:51",
+                                    "aOrigem": "Cache L1",
+                                    "aValidade": -1,
+                                    "aOrdemGatewayContingencia": 0,
+                                    "aUrlGateway": "https://gateway-clinicalbank-prd.neurotech.com.br/services/GATEWAY_WEBSERVICES?wsdl",
+                                    "aDhInicio": {
+                                        "year": 2022,
+                                        "month": 8,
+                                        "dayOfMonth": 21,
+                                        "hourOfDay": 15,
+                                        "minute": 55,
+                                        "second": 51
+                                    },
+                                    "aDhFim": {
+                                        "year": 2022,
+                                        "month": 8,
+                                        "dayOfMonth": 21,
+                                        "hourOfDay": 15,
+                                        "minute": 55,
+                                        "second": 51
+                                    },
+                                    "aLsResultado": [
+                                        {
+                                            "nmParametro": "GTWR_BOAVISTASCOREPOSITIVOPFV2_RESTRITIVO_LST_scoreTamanhoRegistro",
+                                            "vlParametro": "462",
+                                            "dsParametro": "Tamanho Registro",
+                                            "ordem": 1.0,
+                                            "visible": true
+                                        },
+                                        {
+                                            "nmParametro": "GTWR_BOAVISTASCOREPOSITIVOPFV2_RESTRITIVO_LST_scoreTipoRegistro",
+                                            "vlParametro": "601",
+                                            "dsParametro": "Tipo Registro",
+                                            "ordem": 2.0,
+                                            "visible": true
+                                        },
+                                        {
+                                            "nmParametro": "GTWR_BOAVISTASCOREPOSITIVOPFV2_RESTRITIVO_LST_scoreRegistro",
+                                            "vlParametro": "S",
+                                            "dsParametro": "Registro",
+                                            "ordem": 3.0,
+                                            "visible": true
+                                        },
+                                        {
+                                            "nmParametro": "GTWR_BOAVISTASCOREPOSITIVOPFV2_RESTRITIVO_LST_scoreTipoScore",
+                                            "vlParametro": "1",
+                                            "dsParametro": "Tipo Score",
+                                            "ordem": 4.0,
+                                            "visible": true
+                                        },
+                                        {
+                                            "nmParametro": "GTWR_BOAVISTASCOREPOSITIVOPFV2_RESTRITIVO_LST_scoreScore",
+                                            "vlParametro": "0",
+                                            "dsParametro": "Score",
+                                            "ordem": 5.0,
+                                            "visible": true
+                                        },
+                                        {
+                                            "nmParametro": "GTWR_BOAVISTASCOREPOSITIVOPFV2_RESTRITIVO_LST_scoreValor",
+                                            "vlParametro": "0",
+                                            "dsParametro": "Valor",
+                                            "ordem": 6.0,
+                                            "visible": true
+                                        },
+                                        {
+                                            "nmParametro": "GTWR_BOAVISTASCOREPOSITIVOPFV2_RESTRITIVO_LST_scorePlanoExecucao",
+                                            "vlParametro": "N",
+                                            "dsParametro": "Plano Execucao",
+                                            "ordem": 7.0,
+                                            "visible": true
+                                        },
+                                        {
+                                            "nmParametro": "GTWR_BOAVISTASCOREPOSITIVOPFV2_RESTRITIVO_LST_scoreModeloPlano",
+                                            "vlParametro": "",
+                                            "dsParametro": "Modelo Plano",
+                                            "ordem": 10.0,
+                                            "visible": true
+                                        },
+                                        {
+                                            "nmParametro": "GTWR_BOAVISTASCOREPOSITIVOPFV2_RESTRITIVO_LST_scoreNomePlano",
+                                            "vlParametro": "",
+                                            "dsParametro": "Nome Plano",
+                                            "ordem": 11.0,
+                                            "visible": true
+                                        },
+                                        {
+                                            "nmParametro": "GTWR_BOAVISTASCOREPOSITIVOPFV2_RESTRITIVO_LST_scoreModeloScore",
+                                            "vlParametro": "55",
+                                            "dsParametro": "Modelo Score",
+                                            "ordem": 12.0,
+                                            "visible": true
+                                        },
+                                        {
+                                            "nmParametro": "GTWR_BOAVISTASCOREPOSITIVOPFV2_RESTRITIVO_LST_scoreNomeScore",
+                                            "vlParametro": "Flag Restritivos PF",
+                                            "dsParametro": "Nome Score",
+                                            "ordem": 13.0,
+                                            "visible": true
+                                        },
+                                        {
+                                            "nmParametro": "GTWR_BOAVISTASCOREPOSITIVOPFV2_RESTRITIVO_LST_scoreClassificacaoNumerica",
+                                            "vlParametro": "00",
+                                            "dsParametro": "Classificacao Numerica",
+                                            "ordem": 14.0,
+                                            "visible": true
+                                        },
+                                        {
+                                            "nmParametro": "GTWR_BOAVISTASCOREPOSITIVOPFV2_RESTRITIVO_LST_scoreClassifAlfabetica",
+                                            "vlParametro": "",
+                                            "dsParametro": "Classificacao Alfabetica",
+                                            "ordem": 15.0,
+                                            "visible": true
+                                        },
+                                        {
+                                            "nmParametro": "GTWR_BOAVISTASCOREPOSITIVOPFV2_RESTRITIVO_LST_scoreProbabilidade",
+                                            "vlParametro": "00000",
+                                            "dsParametro": "Probabilidade",
+                                            "ordem": 16.0,
+                                            "visible": true
+                                        },
+                                        {
+                                            "nmParametro": "GTWR_BOAVISTASCOREPOSITIVOPFV2_RESTRITIVO_LST_scoreTexto",
+                                            "vlParametro": "Possui débito.",
+                                            "dsParametro": "texto",
+                                            "ordem": 17.0,
+                                            "visible": true
+                                        },
+                                        {
+                                            "nmParametro": "GTWR_BOAVISTASCOREPOSITIVOPFV2_RESTRITIVO_LST_scoreCodigoNaturezaModelo",
+                                            "vlParametro": "104",
+                                            "dsParametro": "Codigo Natureza Modelo",
+                                            "ordem": 20.0,
+                                            "visible": true
+                                        },
+                                        {
+                                            "nmParametro": "GTWR_BOAVISTASCOREPOSITIVOPFV2_RESTRITIVO_LST_scoreDescricaoNatureza",
+                                            "vlParametro": "SINISTRO",
+                                            "dsParametro": "Descricao Natureza",
+                                            "ordem": 21.0,
+                                            "visible": true
+                                        },
+                                        {
+                                            "nmParametro": "GTWR_BOAVISTASCOREPOSITIVOPFV2_RESTRITIVO_LST_scoreTexto2",
+                                            "vlParametro": "",
+                                            "dsParametro": "Texto 2",
+                                            "ordem": 22.0,
+                                            "visible": true
+                                        },
+                                        {
+                                            "nmParametro": "GTWR_BOAVISTASCOREPOSITIVOPFV2_RESTRITIVO_statusConsumidorMensagem",
+                                            "vlParametro": "",
+                                            "dsParametro": "Documento fora do cadastro positivo ou possui alguma excessao",
+                                            "ordem": 23.0,
+                                            "visible": true
+                                        }
+                                    ],
+                                    "aLsParametro": [
+                                        {
+                                            "nmParametro": "GTWE_BOAVISTASCOREPOSITIVOPFV2_RESTRITIVO_Login",
+                                            "vlParametro": "01311070",
+                                            "dsParametro": "Login",
+                                            "ordem": 1.0,
+                                            "visible": true
+                                        },
+                                        {
+                                            "nmParametro": "GTWE_BOAVISTASCOREPOSITIVOPFV2_RESTRITIVO_Senha",
+                                            "vlParametro": "76VERU",
+                                            "dsParametro": "Senha",
+                                            "ordem": 2.0,
+                                            "visible": true
+                                        },
+                                        {
+                                            "nmParametro": "GTWE_BOAVISTASCOREPOSITIVOPFV2_RESTRITIVO_documento",
+                                            "vlParametro": "13767294826",
+                                            "dsParametro": "Documento CPF",
+                                            "ordem": 3.0,
+                                            "visible": true
+                                        },
+                                        {
+                                            "nmParametro": "GTWE_BOAVISTASCOREPOSITIVOPFV2_RESTRITIVO_modeloScore",
+                                            "vlParametro": "55",
+                                            "dsParametro": "Modelos de Score",
+                                            "ordem": 4.0,
+                                            "visible": true
+                                        },
+                                        {
+                                            "nmParametro": "GTWE_BOAVISTASCOREPOSITIVOPFV2_RESTRITIVO_modeloTroca",
+                                            "vlParametro": "",
+                                            "dsParametro": "Modelos de Troca",
+                                            "ordem": 5.0,
+                                            "visible": true
+                                        }
+                                    ],
+                                    "aVisible": true,
+                                    "aOrdem": 0.0
+                                }
+                            ],
+                            "visualizarRetornosBranco": true
+                        },
+                        {
+                            "principal": false,
+                            "visible": true,
+                            "nome": "RGR_RE_SCORE_RESTRITIVO_POSSUI_RESTRICAO#1",
+                            "descricao": "RESTRITIVO - POSSUI RESTRIÇÃO?",
+                            "status": "R",
+                            "statusClass": "status-erro",
+                            "descricaoAnalitica": " \u003cb\u003eDetalhe: \u003c/b\u003eQuantidade de restritivos superior ao máximo.",
+                            "entradasRegras": [
+                                {
+                                    "nmParametro": "CALC_RE_SCORE_RESTRITIVO_POSSUI_RESTRICAO",
+                                    "vlParametro": "S",
+                                    "dsParametro": "CALC_RE_SCORE_RESTRITIVO_POSSUI_RESTRICAO",
+                                    "ordem": 32.0,
+                                    "visible": true
+                                }
+                            ],
+                            "retornosRegras": [
+                                {
+                                    "nmParametro": "GTWR_BOAVISTASCOREPOSITIVOPFV2_RESTRITIVO_LST_scoreNomeScore",
+                                    "vlParametro": "Flag Restritivos PF",
+                                    "dsParametro": "Nome Score",
+                                    "ordem": 13.0,
+                                    "visible": true
+                                },
+                                {
+                                    "nmParametro": "GTWR_BOAVISTASCOREPOSITIVOPFV2_RESTRITIVO_LST_scoreScore",
+                                    "vlParametro": "0",
+                                    "dsParametro": "Score",
+                                    "ordem": 5.0,
+                                    "visible": true
+                                },
+                                {
+                                    "nmParametro": "GTWR_BOAVISTASCOREPOSITIVOPFV2_RESTRITIVO_LST_scoreTexto",
+                                    "vlParametro": "Possui débito.",
+                                    "dsParametro": "texto",
+                                    "ordem": 17.0,
+                                    "visible": true
+                                }
+                            ],
+                            "outrasInformacoesRegras": [],
+                            "consultaAssociadas": [],
+                            "visualizarRetornosBranco": true
+                        }
+                    ],
+                    "entradasRegras": [
+                        {
+                            "nmParametro": "FLAG_TEMP_R",
+                            "vlParametro": "N",
+                            "dsParametro": "FLAG_TEMP_R",
+                            "ordem": 25.0,
+                            "visible": true
+                        },
+                        {
+                            "nmParametro": "FLAG_TEMP_P",
+                            "vlParametro": "N",
+                            "dsParametro": "FLAG_TEMP_P",
+                            "ordem": 26.0,
+                            "visible": true
+                        },
+                        {
+                            "nmParametro": "FLAG_TEMP_F",
+                            "vlParametro": "N",
+                            "dsParametro": "FLAG_TEMP_F",
+                            "ordem": 24.0,
+                            "visible": true
+                        }
+                    ],
+                    "outrasInformacoesRegras": [],
+                    "consultaAssociadas": [],
+                    "visualizarRetornosBranco": true
+                }
+            ],
+            "entradasRegras": [],
+            "outrasInformacoesRegras": [],
+            "consultaAssociadas": [],
+            "visualizarRetornosBranco": true
+        }
+    ]
+};
+									    
