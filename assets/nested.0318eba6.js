@@ -1,21 +1,8 @@
-import "../css/style.css";
-//import javascriptLogo from "/javascript.svg";
-import logo from "/img/logo.png";
-import doctorWidth from "/img/doctor-svgrepo-com.svg";
-import ambulance from "/img/ambulance-svgrepo-com.svg";
-import healthCareHospital from "/img/health-care-hospital-svgrepo-com.svg";
-import healthCare from "/img/health-care-svgrepo-com-face.svg";
-import healthCare2 from "/img/health-care-svgrepo-com.svg";
-import healthClinicHealth from "/img/health-clinic-health-care-svgrepo-com.svg";
-import healthClinicSyringe from "/img/health-clinic-syringe-svgrepo-com.svg";
-
-import { buttonClickGetCardCredit } from "./axios";
-
-document.querySelector("#app").innerHTML = `
+import{l as s}from"./logo.04e27001.js";const i="/img/doctor-svgrepo-com.svg",l="/img/ambulance-svgrepo-com.svg",c="/img/health-care-hospital-svgrepo-com.svg",a="/img/health-care-svgrepo-com-face.svg",o="/img/health-care-svgrepo-com.svg",e="/img/health-clinic-health-care-svgrepo-com.svg",d="/img/health-clinic-syringe-svgrepo-com.svg";document.querySelector("#app").innerHTML=`
     <nav class='navbar container p-2'>
       <div class='col-sm-2 logo'>
         <div class='header-right'>
-          <img alt='logo' class='img-width' src="${logo}" />
+          <img alt='logo' class='img-width' src="${s}" />
         </div>
       </div>
       <div class='d-flex flex-row-reverse'>
@@ -32,7 +19,7 @@ document.querySelector("#app").innerHTML = `
           <div class="col-sm-6" style='display: grid;place-content: center;'>
             <div class='row'>
               <div class='col-12 col-sm-10 col-md-6 col-lg-10'>
-                <span class='text-color'>Consulte o crédito do seu cpf</span>
+                <span class='text-color'>Consulte o cr\xE9dito do seu cpf</span>
               </div>
             </div>
             <div class='row'>
@@ -70,29 +57,29 @@ document.querySelector("#app").innerHTML = `
                 <div class='d-flex flex-wrap ' >
                     <div class="col-auto col-sm-2 col-md-2 align-self-center">
                       <div class='col col-sm col-md p-2'>
-                        <img src='${ambulance}' />
+                        <img src='${l}' />
                       </div>
                       <div class='col col-sm col-md p-2'>
-                        <img src='${healthCareHospital}' />
+                        <img src='${c}' />
                       </div>
                       <div class='col col-sm col-md p-2 '>
-                        <img src='${healthCare}' />
+                        <img src='${a}' />
                       </div>
                     </div>
                     <div class="col-12 col-sm-8 col-md-8 align-self-center">
                       <div class="flex-md-fill flex-xl-fill width-img">
-                        <img src='${doctorWidth}' />
+                        <img src='${i}' />
                       </div>
                     </div>
                     <div class="col-auto col-sm-2 col-md-2 align-self-center">
                       <div class='col col-sm col-md p-2'>
-                        <img src='${healthCare2}' />
+                        <img src='${o}' />
                       </div>
                       <div class='col col-sm col-md p-2 '>
-                        <img src='${healthClinicHealth}' />
+                        <img src='${e}' />
                       </div>
                       <div class='col col-sm col-md p-2 '>
-                        <img src='${healthClinicSyringe}' />
+                        <img src='${d}' />
                       </div>
                     </div>
                 </div>
@@ -110,5 +97,3 @@ document.querySelector("#app").innerHTML = `
     </footer>
 
 `;
-
-buttonClickGetCardCredit(document.querySelector("#button-addon2"));
