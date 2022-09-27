@@ -76,15 +76,6 @@ document.querySelector("#app").innerHTML = `
                         <label class='text-strong'>Valor Total Tratamento:</label>
                         <input class='form-control form-control-sm border-radius' type='text' name='valorTratamento' placeholder='Valor total do tratamento'/>
                       </div>
-                      <div class='col-4 col-sm-5 pt-1'>
-                        <label>Entrada</label>
-                        <select class="form-select form-select-sm" aria-label="Default select example">
-                          <option selected>Open this select menu</option>
-                          <option value="1">Entrada Pix</option>
-                          <option value="2">Débito</option>
-                          <option value="3">Transferência Bancário TED ou DOC</option>
-                        </select>
-                      </div>  
                     </form>
                   </div>
                 </div>
