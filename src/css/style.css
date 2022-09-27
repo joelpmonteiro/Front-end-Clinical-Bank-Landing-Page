@@ -103,6 +103,12 @@ body{
   letter-spacing: 0.1px;
 }
 
+.text-strong{
+  font-style: normal;
+  font-weight: 700;
+  font-size: 15px;
+}
+
 .sub-text-element {
   position: relative;
   width: 100px;
