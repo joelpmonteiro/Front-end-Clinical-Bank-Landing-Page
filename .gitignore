@@ -12,6 +12,8 @@ dist
 dist-ssr
 *.local
 
+#src/js/axios - Copia.js
+#src/js/main - Copia.js
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json
