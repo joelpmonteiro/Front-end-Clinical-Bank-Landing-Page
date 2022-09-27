@@ -47,13 +47,13 @@ document.querySelector("#app").innerHTML = `
               <div class="col-10 col-sm-6 col-md-6 col-lg-8" id='cpfdiv'>
                   <form id="formCPF" method="post" >
                     <div class="input-group  mb-3">
-                      <input type="text" value='Caique de Souza Boas' class='form-control border-radius nome' placeholder='Digite seu nome' aria-label="digite seu nome" aria-describedby="basic-addon2">
+                      <input type="text" value='' class='form-control border-radius nome' placeholder='Digite seu nome' aria-label="digite seu nome" aria-describedby="basic-addon2">
                     </div>
                     <div class="input-group  mb-3">
-                      <input type="date"  value='16/05/1995' class='form-control border-radius data' placeholder='DD/MM/YYYY' aria-label="digite data de nascimento" aria-describedby="basic-addon2">
+                      <input type="date"  value='' class='form-control border-radius data' placeholder='DD/MM/YYYY' aria-label="digite data de nascimento" aria-describedby="basic-addon2">
                     </div>  
                     <div class="input-group  mb-3">
-                      <input type="text" value='434.466.418-31' class='form-control border-radius cpf' placeholder='Digite seu cpf' aria-label="digite seu cpf" aria-describedby="basic-addon2">
+                      <input type="text" value='' class='form-control border-radius cpf' placeholder='Digite seu cpf' aria-label="digite seu cpf" aria-describedby="basic-addon2">
                     </div>
 
                     <div class='p-2 mb-3'>
@@ -68,10 +68,10 @@ document.querySelector("#app").innerHTML = `
             <div class="row">
               <div class="col-12 col-sm-12">
                 <div class='d-flex flex-wrap ' >
-                  <div class='row pt-3' id='paymentFormat'>
+                  <div class='row pt-3 d-none' id='paymentFormat'>
                     <span class=''>Credito Aprovado no momento: R$1092.00</span>
                     <span class=''>Valor das parcelas: R$78.00</span>
-                    <form id='formInput' class=''>
+                    <form id='formInput' class='d-none'>
                       <div class='col-4 col-sm-5'>
                         <label class='text-strong'>Valor Total Tratamento:</label>
                         <input class='form-control form-control-sm border-radius' type='text' name='valorTratamento' placeholder='Valor total do tratamento'/>
