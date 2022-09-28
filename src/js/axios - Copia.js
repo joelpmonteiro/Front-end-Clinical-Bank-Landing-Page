@@ -51,17 +51,65 @@ function createElementSpan(msg) {
   divElement.appendChild(createElement(msg[0] === "" ? "0.00" : msg[0]));
   divElement.appendChild(document.createElement("br"));
   //
-  spaceCpf.querySelector("#cpfdiv").appendChild(divElement);
+  //spaceCpf.querySelector("#cpfdiv").appendChild(divElement);
 
   if (msg[1] !== "" && msg[1] !== undefined) {
     divElement.appendChild(createElement(msg[1] === "" ? "0.00" : msg[1]));
     divElement.appendChild(document.createElement("br"));
-    spaceCpf.querySelector("#cpfdiv").appendChild(divElement);
+    //spaceCpf.querySelector("#cpfdiv").appendChild(divElement);
+  }
+  return divElement;
+}
+
+function createElementReplaceSpan(msg, span, index) {
+  if (index === 0) {
+    span.textContent = msg[0] === "" ? "0.00" : msg[0];
+  } else {
+    if (msg[1] !== "" && msg[1] !== undefined) {
+      span.textContent = msg[1] === "" ? "0.00" : msg[1];
+    }
   }
 }
 
 function removeElementDom() {
   document.querySelector(".user-approvedOrNot").remove();
+}
+
+function getElementAll(divFormatId, proposta, dom) {
+  divFormatId.classList.remove("d-none");
+  const spanTextStrong = divFormatId.querySelectorAll("span");
+
+  spanTextStrong.forEach((el, index) => {
+    if (!dom) {
+      if (!el.classList.contains('text-strong')) {
+        el.classList.add("text-strong");
+        el.removeAttribute('style')
+
+      }
+      createElementReplaceSpan(
+        [
+          `Credito Aprovado no momento: ${proposta[0].value}`,
+          `Valor das parcelas: ${proposta[2].value}`,
+        ],
+        el,
+        index
+      );
+    } else {
+      if (index === 1) {
+        el.classList.remove("text-strong");
+
+        el.setAttribute('style', 'display:none')
+        el.textContent = ''
+      }
+      divFormatId.querySelector('#formInput').setAttribute('class', 'd-none');
+
+      createElementReplaceSpan(
+        ["Conforme analise não foi possível realizar a solicitação"],
+        el, index
+      );
+    }
+  });
+
 }
 
 export function buttonClickGetCardCredit(elementBtn) {
@@ -70,6 +118,7 @@ export function buttonClickGetCardCredit(elementBtn) {
     const btn_loading = elementBtn.querySelector(
       ".spinner-border.spinner-border-sm"
     );
+    const divFormId = document.querySelector("#paymentFormat");
     //remove d-none
     btn_loading.classList.remove("d-none");
     try {
@@ -94,7 +143,7 @@ export function buttonClickGetCardCredit(elementBtn) {
           .post("services/rest/workflow/submit", data)
           .then((result) => {
             const domExist = document.body.contains(
-              document.querySelector(".sub-text-element")
+              document.querySelector("span.text-strong")
             );
             if (
               result.status === 200 &&
@@ -133,46 +182,38 @@ export function buttonClickGetCardCredit(elementBtn) {
               });
 
               if (!domExist) {
-                createElementSpan([
-                  `Credito Aprovado no momento: R$${proposta[0].value}`,
-                  `Valor das parcelas: R$${proposta[2].value}`,
-                ]);
+                console.log('cria')
+                divFormId.querySelector('#formInput').removeAttribute('class');
+                getElementAll(divFormId, proposta, domExist);
               } else {
-                const containsDiv = document.body.contains(
-                  document.querySelector(".user-approvedOrNot")
-                );
+                divFormId.querySelector('#formInput').removeAttribute('class');
+                getElementAll(divFormId, proposta, false);
 
-                if (containsDiv) {
-                  removeElementDom();
-                  createElementSpan([
-                    `Credito Aprovado no momento: R$${proposta[0].value}`,
-                    `Valor das parcelas: R$${proposta[2].value}`,
-                  ]);
-                } else {
-                  //replace text span
-                  replaceExistDomSpan(
-                    "Credito Aprovado no momento: R$",
-                    proposta[0].value
-                  );
-                }
               }
 
-              //sectionId.setAttribute("style", "display:flex");
+              sectionId.setAttribute("style", "display:flex");
             } else {
-              //sectionId.setAttribute("style", "display:none");
+              sectionId.setAttribute("style", "display:none");
 
               if (!domExist) {
-                createElementSpan([
-                  "Conforme analise não foi possível realizar a solicitação",
-                ]);
+                console.log("entrou");
+                getElementAll(divFormId, "", domExist);
+
+                // createElementSpan([
+                //   "Conforme analise não foi possível realizar a solicitação",
+                // ]);
               } else {
-                const existDiv = document.querySelectorAll(".sub-text-element");
+                const existDiv = divFormId.querySelectorAll(".text-strong");
+                console.log("existe: ", domExist);
                 if (existDiv.length >= 2) {
-                  removeElementDom();
-                  createElementSpan([
-                    "Conforme analise não foi possível realizar a solicitação",
-                  ]);
+                  console.log("entrou2");
+                  //removeElementDom();
+                  getElementAll(divFormId, "", domExist);
+                  // createElementSpan([
+                  //   "Conforme analise não foi possível realizar a solicitação",
+                  // ]);
                 } else {
+                  console.log("entrou3");
                   replaceExistDomSpan([
                     "Conforme analise não foi possível realizar a solicitação",
                   ]);

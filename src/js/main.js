@@ -68,16 +68,33 @@ document.querySelector("#app").innerHTML = `
             <div class="row">
               <div class="col-12 col-sm-12">
                 <div class='d-flex flex-wrap ' >
-                  <div class='row pt-3 d-none' id='paymentFormat'>
-                    <span class=''>Credito Aprovado no momento: R$1092.00</span>
-                    <span class=''>Valor das parcelas: R$78.00</span>
-                    <form id='formInput' class='d-none'>
-                      <div class='col-4 col-sm-5'>
-                        <label class='text-strong'>Valor Total Tratamento:</label>
-                        <input class='form-control form-control-sm border-radius' type='text' name='valorTratamento' placeholder='Valor total do tratamento'/>
+                  <div class="col-auto col-sm-2 col-md-2 align-self-center">
+                      <div class='col col-sm col-md p-2'>
+                        <img src='${ambulance}' />
                       </div>
-                    </form>
-                  </div>
+                      <div class='col col-sm col-md p-2'>
+                        <img src='${healthCareHospital}' />
+                      </div>
+                      <div class='col col-sm col-md p-2 '>
+                        <img src='${healthCare}' />
+                      </div>
+                    </div>
+                    <div class="col-12 col-sm-8 col-md-8 align-self-center">
+                      <div class="flex-md-fill flex-xl-fill width-img">
+                        <img src='${doctorWidth}' />
+                      </div>
+                    </div>
+                    <div class="col-auto col-sm-2 col-md-2 align-self-center">
+                      <div class='col col-sm col-md p-2'>
+                        <img src='${healthCare2}' />
+                      </div>
+                      <div class='col col-sm col-md p-2 '>
+                        <img src='${healthClinicHealth}' />
+                      </div>
+                      <div class='col col-sm col-md p-2 '>
+                        <img src='${healthClinicSyringe}' />
+                      </div>
+                    </div>
                 </div>
               </div>
               
@@ -85,70 +102,6 @@ document.querySelector("#app").innerHTML = `
           </div>
         </div>
     </section>
-    <section class='container container-sm container-md container-lg my-5' style='display:none;'>
-
-    </section>
-    <section id='cardCredit' class='container container-sm container-md container-lg my-5' style='display:none;'>
-      <div class='row text-center'>
-        <div class="col-12 col-sm-6 col-md-12 col-lg-12">
-          <span class='text-color'>Informe os dados do seu cartão de crédito:</span>
-          <div class='row mt-2'>
-            <div class="d-flex justify-content-center my-2">
-              <span>Adicionar outro cartão ?
-                <button class="btn btn-primary btn-sm" type="submit" style='padding: 0.01rem 0.2rem;border-radius: 0.2em;font-size: .8em;'>
-                  +
-                </button>
-              </span>
-            </div>
-            <p style='color:red;'>Todos os campos são obrigatórios/necessários</p>
-            <div class='mb-2'>
-              <p>Aceitamos os seguintes cartões</p>
-              <img alt='card_credit' src='${cardCredit}'/>
-            </div>
-            <div class="d-flex justify-content-center" id='cardCreditDiv'>
-                <form id="formCredit" method="post" >
-                  <div class='col-12 col-sm-12 col-md-6 d-inline-block mb-3'>
-                  <div class="form-group mb-3">
-                    <input type="text" value='' class='form-control border-radius numero' placeholder='Número do cartão' aria-label="Número do cartão" aria-describedby="basic-addon2">
-                  </div>
-                  <div class="form-group mb-3">
-                    <input type="text"  value='' class='form-control border-radius nome' placeholder='Nome do cartão' aria-label="Nome do cartão" aria-describedby="basic-addon2">
-                  </div>  
-                  <div class="form-group row ">
-                    <div class='col-6'>
-                      <input type="text" value=''  class='form-control border-radius cpf' placeholder='MM/AA' aria-label="MM/AA" aria-describedby="basic-addon2">
-                    </div> 
-                    <div class='col-6'>
-                      <input type="text" value=''  class='form-control border-radius cvv' placeholder='CVV' aria-label="CVV" aria-describedby="basic-addon2">
-                    </div>    
-                  </div>
-                  </div>
-                  <div class="col-12 col-sm-12 col-md-8 fs-6 fw-normal text-muted d-inline-block" style='font-size: 15px !important;'>    
-                    <p>
-                      Ao clicar no botão “Confirmar”, você concorda com a nossa política de desconto do valor ao não pagar a parcela do boleto ou recorrência em questão
-                    </p>
-                    <p>
-                      Confirma ter mais de 18 anos e aceita que a <strong>ClinicalBank renove automaticamente sua recorrência e cobre o valor parcela acima confirmada e assinada em contrato.</strong>
-                    </p>
-                    <p>
-                      O valor de entrada não será devolvido em hipótese nenhuma, pois trata-se da utilização do software e serviços prestados pelo produto ofertado.
-                    </p>
-                  </div>
-                  <div class='col-12 p-2 mb-3'>
-                    <button class="btn txt-background text-white" type="submit" id="button-addon2" style='margin-left: -10px;border-radius:12px'>
-                      <span class="spinner-border spinner-border-sm d-none"></span>Confirmar</button>
-                  </div>
-                  
-                </form>
-
-              </div>
-              
-          </div>
-        </div>
-      </div>
-    </section>
-
-
     <footer class="footer mt-auto py-3 ">
       <div class="container">
         <span class="text-muted">&copy; Clinical Bank 2022</span>
