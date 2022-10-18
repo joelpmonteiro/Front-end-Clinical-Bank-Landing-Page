@@ -132,6 +132,7 @@
 <script>
 import { computed, reactive, toRefs } from "vue";
 import { makePaymentCardCredit } from "../services/axios";
+import { typePayment } from "../util/typePayment";
 export default {
   name: "sectionCreditCard",
   props: {
@@ -180,7 +181,24 @@ export default {
             const valueNeurotech = neurotech.find(
               (value) => value.name === "CALC_VALOR_CONTRATO"
             );
-            const calValue = dataCredit.valueTotal - valueNeurotech.value;
+            //const calValue = dataCredit.valueTotal - valueNeurotech.value;
+
+            //      {
+
+            //     "payment_method":"bank_slip_yapay",
+
+            //     "value": 400
+
+            // }
+
+            const arrayPaymentJson = dataCredit.methodsPay.map((value) => {
+              return typePayment(value, {
+                holder_name: paymentObj.cardName,
+                card_expiration: paymentObj.cardDueDate,
+                card_number: paymentObj.cardNumber,
+                card_cvv: paymentObj.cardcvv,
+              });
+            });
 
             const json = {
               name: jsonUserApproved.find((value) => value.Name === "PROP_NOME")
@@ -196,25 +214,15 @@ export default {
               max_amount_installment: neurotech.find(
                 (value) => value.name === "CALC_VALOR_PARCELA"
               ).value,
-              selected_options: [
-                {
-                  payment_method: "credit_card",
-                  value: valueNeurotech.value,
-                  payment_profile: {
-                    holder_name: paymentObj.cardName,
-                    card_expiration: paymentObj.cardDueDate,
-                    card_number: paymentObj.cardNumber,
-                    card_cvv: paymentObj.cardcvv,
-                  },
-                },
-              ],
+              selected_options: [arrayPaymentJson],
             };
+            console.log(json);
 
-            const { data, status } = await makePaymentCardCredit(json);
+            // const { data, status } = await makePaymentCardCredit(json);
 
-            if (status === 200 && data.code === 200) {
-              alert("Pagamento feito com sucesso!");
-            }
+            // if (status === 200 && data.code === 200) {
+            //   alert("Pagamento feito com sucesso!");
+            // }
           }
         } else {
           alert("Preencha os dados do cartão de credito por favor!");

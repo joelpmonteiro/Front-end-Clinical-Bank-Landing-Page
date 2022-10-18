@@ -122,7 +122,6 @@ export default defineComponent({
         const newDate = formatDate(new Date(data_user.value[1].Value));
         userData[1].Value = newDate;
         userData[0].Value = userData[0].Value.replace(/\D/g, "");
-        console.log("cpf: ", userData[0].Value.replace(/\D/g, ""));
         sendForm.Submit.Inputs = userData;
 
         const { data, status } = await postDataNeurotech(sendForm);
@@ -188,6 +187,7 @@ export default defineComponent({
       if (v.length == 3 || v.length == 7) data_user.value[0].Value += ".";
       if (v.length == 11) data_user.value[0].Value += "-";
     }
+
     return { sendDataNeurotech, data_user, proposta, cpf, mascara };
   },
 });

@@ -18,24 +18,36 @@
           <form id="formInput" class="d-block">
             <div class="col-4 col-sm-5">
               <label class="text-strong">Valor Total Tratamento:</label>
-              <input
+              <div class="input-group input-group-sm mb-3">
+                <span class="input-group-text">R$</span>
+                <input
+                  type="text"
+                  class="form-control form-control-sm border-radius"
+                  name="valorTratamento"
+                  placeholder="Valor total do tratamento"
+                  v-model="valueTotal"
+                  @keyup="mascaraMoney"
+                />
+              </div>
+              <!-- <input
                 class="form-control form-control-sm border-radius"
                 type="text"
                 name="valorTratamento"
                 placeholder="Valor total do tratamento"
-                v-model.lazy.trim="valueTotal"
-              />
+                v-model="valueTotal"
+                @keyup="mascaraMoney"
+              /> -->
               <span
                 >Valor restante: R$
                 {{
                   valueTotal === null || valueTotal === ""
                     ? " "
-                    : calcCom + ".00"
+                    : formatNumberMoney(calcCom)
                 }}</span
               >
             </div>
             <div class="col-4 col-sm-5 pt-2">
-              <label class="text-strong">Adicionar Tipo de Pagamento:</label>
+              <label class="text-strong">Adicionar meio de pagamento:</label>
               <select
                 class="form-select form-select-sm"
                 v-model="selectItem"
@@ -129,7 +141,7 @@
                 class="btn btn-outline-secondary"
                 @click.prevent="sendPayment"
               >
-                Confirmar
+                Salvar
               </button>
             </div>
           </div>
@@ -140,11 +152,84 @@
       </div>
     </div>
   </div>
+  <div
+    class="modal fade"
+    id="ModalValue"
+    tabindex="-1"
+    aria-labelledby="exampleModalLabel"
+    aria-hidden="true"
+  >
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalLabel">New message</h1>
+          <button
+            type="button"
+            class="btn-close"
+            data-bs-dismiss="modal"
+            aria-label="Close"
+            @click.prevent="closeModal"
+          ></button>
+        </div>
+        <div class="modal-body">
+          <form>
+            <div class="mb-3" v-for="(value, index) in listHandle" :key="index">
+              <label for="recipient-name" class="col-form-label"
+                >Digite o valor para {{ value }}:</label
+              >
+              <input
+                type="text"
+                class="form-control"
+                v-if="value === 'Pix'"
+                v-model="pix"
+              />
+
+              <input
+                type="text"
+                class="form-control"
+                v-if="value === 'Débito'"
+                v-model="debito"
+              />
+              <input
+                type="text"
+                class="form-control"
+                v-if="value === 'Transferência Bancária TED ou DOC'"
+                v-model="tedOrDoc"
+              />
+              <input
+                type="text"
+                class="form-control"
+                v-if="value === 'Cartão de Crédito'"
+                v-model="cardCredit"
+              />
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button
+            type="button"
+            class="btn btn-secondary"
+            data-bs-dismiss="modal"
+            @click.prevent="closeModal"
+          >
+            Fechar
+          </button>
+          <button
+            type="button"
+            @click="confirmedValuePayment"
+            class="btn btn-primary"
+          >
+            Confirmar
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
 </template>
 
 <script>
-import { ref, computed, onMounted } from "vue";
-
+import { ref, computed, onMounted, reactive, toRefs, watch } from "vue";
+import { formatNumber } from "../util/formatMoney";
 export default {
   name: "ApprovedCreditOrNot",
   props: {
@@ -152,7 +237,14 @@ export default {
       type: Object,
     },
   },
+  emits: ["sendPaymentData"],
   setup(props, { emit }) {
+    const listValueTypePayment = reactive({
+      pix: "",
+      debito: "",
+      tedOrDoc: "",
+      cardCredit: "",
+    });
     const selectedParcelItem = ref(-1);
     let valor_approved = { vApproved: null, parcelas: null };
     // eslint-disable-next-line vue/no-setup-props-destructure, no-unused-vars
@@ -170,6 +262,35 @@ export default {
 
     const listHandle = ref([]);
 
+    const objFunction = reactive({
+      mascaraMoney: () => {
+        if (valueTotal.value) {
+          var valor = valueTotal.value;
+
+          valor = valor + "";
+          valor = parseInt(valor.replace(/[\D]+/g, ""));
+          valor = valor + "";
+          valor = valor.replace(/([0-9]{2})$/g, ",$1");
+
+          if (valor.length > 6) {
+            valor = valor.replace(/([0-9]{3}),([0-9]{2}$)/g, ".$1,$2");
+          }
+
+          valueTotal.value = valor;
+          if (valor == "NaN") valueTotal.value = "";
+        }
+      },
+      formatNumberMoney: (value) => {
+        return formatNumber(value);
+      },
+    });
+
+    const closeModal = () => {
+      const modal = document.querySelector("#ModalValue");
+      modal.classList.remove("show");
+      modal.removeAttribute("style", "display:block");
+    };
+
     const addTypePayment = () => {
       if (selectItem.value !== -1)
         if (
@@ -183,20 +304,94 @@ export default {
     const deleteItem = (index) => {
       listHandle.value.splice(index, 1);
     };
-    const sendPayment = () => {
+
+    const confirmedValuePayment = () => {
+      console.log("teste: ");
+      const valuePayment = listHandle.value.map((value) => {
+        if (value === "Pix")
+          return { value: listValueTypePayment.pix, name: value };
+        if (value === "Débito")
+          return { value: listValueTypePayment.debito, name: value };
+        if (value === "Transferência Bancária TED ou DOC")
+          return { value: listValueTypePayment.tedOrDoc, name: value };
+        if (value === "Cartão de Crédito")
+          return { value: listValueTypePayment.cardCredit, name: value };
+      });
       emit("sendPaymentData", {
         valueTotal: valueTotal.value,
-        methodsPay: listHandle.value,
+        methodsPay: valuePayment,
         selectedParcel: selectedParcelItem.value,
         // parcelas: 12,
       });
     };
+    const sendPayment = () => {
+      if (listHandle.value.length > 1) {
+        console.log(listHandle.value);
+        const modal = document.querySelector("#ModalValue");
+        // eslint-disable-next-line no-undef
+        modal.classList.add("show");
+        modal.setAttribute("style", "display:block");
+      } else {
+        emit("sendPaymentData", {
+          valueTotal: valueTotal.value,
+          methodsPay: listHandle.value,
+          selectedParcel: selectedParcelItem.value,
+          // parcelas: 12,
+        });
+      }
+    };
 
+    //wwatch
+    watch(
+      () => listValueTypePayment,
+      (newValue) => {
+        if (
+          parseFloat(newValue.cardCredit) >
+          parseFloat(valueApprovedComputed.value.vApproved)
+        ) {
+          alert(
+            "Digite um valor valido ou Menor do que " + valor_approved.vApproved
+          );
+          listValueTypePayment.cardCredit = "";
+        }
+        if (
+          parseFloat(newValue.debito) >
+          parseFloat(valueApprovedComputed.value.vApproved)
+        ) {
+          alert(
+            "Digite um valor valido ou Menor do que " + valor_approved.vApproved
+          );
+          listValueTypePayment.debito = "";
+        }
+        if (
+          parseFloat(newValue.pix) >
+          parseFloat(valueApprovedComputed.value.vApproved)
+        ) {
+          alert(
+            "Digite um valor valido ou Menor do que " + valor_approved.vApproved
+          );
+          listValueTypePayment.pix = "";
+        }
+        if (
+          parseFloat(newValue.tedOrDoc) >
+          parseFloat(valueApprovedComputed.value.vApproved)
+        ) {
+          alert(
+            "Digite um valor valido ou Menor do que " + valor_approved.vApproved
+          );
+          listValueTypePayment.tedOrDoc = "";
+        }
+      },
+      { deep: true }
+    );
+    //
     //Init Compute
     const calcCom = computed(() => {
       if (valor_approved.vApproved === null || valor_approved.vApproved === 0)
         return 0;
-      return valueTotal.value - valor_approved.vApproved;
+      const formaValue = valueTotal.value.replace(".", "").replace(",", ".");
+      return Math.abs(formaValue - valor_approved.vApproved).toFixed(2);
+      //return Math.abs(valueTotal.value - valor_approved.vApproved).toFixed(2);
     });
 
     const installmentsFinancial = computed(() => {
@@ -214,6 +409,7 @@ export default {
       });
       return y;
     });
+    //
     onMounted(() => {
       if (props.creditCard.values !== null) {
         props.creditCard.values.forEach((element) => {
@@ -239,6 +435,10 @@ export default {
       totalParcel,
       valueApprovedComputed,
       installmentsFinancial,
+      ...toRefs(objFunction),
+      ...toRefs(listValueTypePayment),
+      closeModal,
+      confirmedValuePayment,
     };
   },
 };
