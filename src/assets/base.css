@@ -21,10 +21,10 @@ body {
 
 
 
-body{
+body {
   height: calc(var(--vh, 1vh) * 100);
   background: linear-gradient(300.76deg, rgba(177, 177, 177, 0.51) -15.24%, #FFFFFF 78.85%);
-} 
+}
 
 .loading div {
   width: 1rem;
@@ -46,17 +46,17 @@ body{
   animation-delay: 0.6s;
 }
 
-#app{
-    height: calc(var(--vh,1vh) * 100);
+#app {
+  height: calc(var(--vh, 1vh) * 100);
 }
 
 .separator {
-    opacity: 0.1;
-    border: 1px solid #217BF4;
-    margin-top: 0px;
+  opacity: 0.1;
+  border: 1px solid #217BF4;
+  margin-top: 0px;
 }
 
-.text-color{
+.text-color {
   position: relative;
   font-style: normal;
   font-weight: 700;
@@ -65,14 +65,14 @@ body{
   color: #2175f4;
 }
 
-.text-width{
-    position: relative;
-    max-width: 100%;
-    width: 420px;
-    height: 85px;
+.text-width {
+  position: relative;
+  max-width: 100%;
+  width: 420px;
+  height: 85px;
 }
 
-.txt-background{
+.txt-background {
   background: #217bf4;
   border-radius: 12px;
   font-style: normal;
@@ -83,15 +83,16 @@ body{
 
 }
 
-.width-img{
+.width-img {
   max-width: 100%;
   width: 400px;
 }
 
-.border-radius{
+.border-radius {
   border-radius: 12px;
 }
-.sub-text{
+
+.sub-text {
   position: relative;
   width: 100px;
   height: 10px;
@@ -103,7 +104,7 @@ body{
   letter-spacing: 0.1px;
 }
 
-.text-strong{
+.text-strong {
   font-style: normal;
   font-weight: 700;
   font-size: 15px;
@@ -128,19 +129,19 @@ body{
 
 }
 
-.header-right{
+.header-right {
   position: relative;
   margin: auto;
   top: 5px;
 }
 
-.img-width{
+.img-width {
   max-width: 100%;
   width: 150px;
 }
 
-.logo > span{
-  position:relative;
+.logo>span {
+  position: relative;
   margin: 10% auto;
   /* font-family: 'Poppins'; */
   font-style: normal;
@@ -148,10 +149,10 @@ body{
   font-size: 16px;
   color: #2b2b39;
 }
+
 /* .logo:hover {
   filter: drop-shadow(0 0 2em #646cffaa);
 }
 .logo.vanilla:hover {
   filter: drop-shadow(0 0 2em #f7df1eaa);
 } */
-
