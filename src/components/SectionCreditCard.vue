@@ -110,15 +110,26 @@
                 </p>
               </div>
               <div class="col-12 p-2 mb-3">
-                <button
+                <!-- <button
                   @click.prevent="approvedPayment"
                   class="btn txt-background text-white"
                   type="submit"
                   id="button-addon2"
                   style="margin-left: -10px; border-radius: 12px"
                 >
-                  <span class="spinner-border spinner-border-sm d-none"></span
-                  >Confirmar Pagamento
+                  <span class="spinner-border spinner-border-sm d-none"></span>
+                  Confirmar Pagamento
+                </button> -->
+
+                <button
+                  @click.prevent="approvedPayment"
+                  class="btn txt-background text-white"
+                  type="submit"
+                  id="confirmedPayment"
+                  style="margin-left: -10px; border-radius: 12px"
+                >
+                  <span class="spinner-border spinner-border-sm d-none"></span>
+                  Confirmar Pagamento
                 </button>
               </div>
             </form>
@@ -165,6 +176,8 @@ export default {
       return props.paymentProps;
     });
     const approvedPayment = async () => {
+      const btn_loading = document.querySelector("#confirmedPayment");
+      btn_loading.querySelector("span").classList.remove("d-none");
       try {
         if (
           paymentObj.cardDueDate !== "" ||
@@ -177,19 +190,6 @@ export default {
               sessionStorage.getItem("form-neurotech")
             );
             const { dataCredit, userInf, neurotech } = updateProps.value;
-
-            const valueNeurotech = neurotech.find(
-              (value) => value.name === "CALC_VALOR_CONTRATO"
-            );
-            //const calValue = dataCredit.valueTotal - valueNeurotech.value;
-
-            //      {
-
-            //     "payment_method":"bank_slip_yapay",
-
-            //     "value": 400
-
-            // }
 
             const arrayPaymentJson = dataCredit.methodsPay.map((value) => {
               return typePayment(value, {
@@ -216,13 +216,13 @@ export default {
               ).value,
               selected_options: [arrayPaymentJson],
             };
-            console.log(json);
+            //console.log(json);
 
-            // const { data, status } = await makePaymentCardCredit(json);
+            const { data, status } = await makePaymentCardCredit(json);
 
-            // if (status === 200 && data.code === 200) {
-            //   alert("Pagamento feito com sucesso!");
-            // }
+            if (status === 200 && data.code === 200) {
+              alert("Pagamento feito com sucesso!");
+            }
           }
         } else {
           alert("Preencha os dados do cartão de credito por favor!");
@@ -230,6 +230,8 @@ export default {
       } catch (error) {
         console.log(error);
         alert("Erro ao efetuar o pagamento!");
+      } finally {
+        btn_loading.querySelector("span").classList.add("d-none");
       }
     };
     //onMounted(() => {});

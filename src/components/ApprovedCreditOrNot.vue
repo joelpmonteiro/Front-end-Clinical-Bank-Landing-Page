@@ -306,7 +306,6 @@ export default {
     };
 
     const confirmedValuePayment = () => {
-      console.log("teste: ");
       const valuePayment = listHandle.value.map((value) => {
         if (value === "Pix")
           return { value: listValueTypePayment.pix, name: value };
@@ -321,7 +320,7 @@ export default {
         valueTotal: valueTotal.value,
         methodsPay: valuePayment,
         selectedParcel: selectedParcelItem.value,
-        // parcelas: 12,
+        checkForm: true,
       });
     };
     const sendPayment = () => {
@@ -336,7 +335,7 @@ export default {
           valueTotal: valueTotal.value,
           methodsPay: listHandle.value,
           selectedParcel: selectedParcelItem.value,
-          // parcelas: 12,
+          checkForm: true,
         });
       }
     };

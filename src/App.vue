@@ -18,6 +18,7 @@
     <!-- <RouterView v-bind:style="changeStyle" /> -->
   </section>
   <ExtraSection
+    v-if="computedAddress.dataCredit.checkForm"
     v-bind:style="changeStyle"
     @emit-send-data-user="addressUser"
   ></ExtraSection>
@@ -53,6 +54,7 @@ export default {
       addressUserInf: {},
       approvedCredit: {},
       neurotech: [],
+      checkForm: false,
     });
     const dataNeuro = reactive({
       credit: {
@@ -79,8 +81,10 @@ export default {
     };
 
     //function
-    const addressUser = (address) => {
+    const addressUser = (address, { checkForm }) => {
+      console.log(checkForm);
       objPassEmit.addressUserInf = address;
+      objPassEmit.checkForm = checkForm;
     };
     const dataApprovedCredit = (data) => {
       objPassEmit.approvedCredit = data;
@@ -97,6 +101,7 @@ export default {
         userInf: objPassEmit.addressUserInf,
         dataCredit: objPassEmit.approvedCredit,
         neurotech: objPassEmit.neurotech,
+        checkForm: objPassEmit.checkForm,
       };
     });
     return {

@@ -1,6 +1,6 @@
 <template>
   <section
-    class="container container-sm container-md container-lg my-5"
+    class="container container-sm container-md container-lg"
     style="display: none"
     :style="checkSavedInfor"
   >
@@ -200,7 +200,7 @@ export default {
         selectedObj.selectedState !== -1
       ) {
         checkSavedInfor.value = "display: none";
-        emit("emit-send-data-user", selectedObj);
+        emit("emit-send-data-user", selectedObj, { checkForm: true });
       } else {
         alert("Preencha os dados corretamente!");
       }
