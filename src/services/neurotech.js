@@ -35,3 +35,4 @@ export function formatDate(date) {
     date.getUTCFullYear(),
   ].join("/");
 }
+

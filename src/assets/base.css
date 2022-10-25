@@ -1,5 +1,5 @@
 :root {
-  font-family: Inter, Avenir, Helvetica, Arial, sans-serif;
+  font-family: Inter;
   font-size: 16px;
   line-height: 24px;
   font-weight: 400;
@@ -16,15 +16,16 @@ body {
   width: 100%;
   height: 100%;
   /* object-fit: cover; */
-  /* background: linear-gradient(311.76deg, rgba(177, 177, 177, 0.51) -15.24%, #FFFFFF 78.85%); */
+  background: #efefef;
 }
 
+.colorBlueTransparent {
+  color: #00c5c7 !important;
+}
 
-
-body {
-  /* height: calc(var(--vh, 1vh) * 100); */
+/* body {
   background: linear-gradient(300.76deg, rgba(177, 177, 177, 0.51) -15.24%, #FFFFFF 78.85%);
-}
+} */
 
 .loading div {
   width: 1rem;
@@ -52,7 +53,7 @@ body {
 
 .separator {
   opacity: 0.1;
-  border: 1px solid #217BF4;
+  border: 1px solid #217bf4;
   margin-top: 0px;
 }
 
@@ -80,7 +81,6 @@ body {
   text-align: center;
   font-size: 16px;
   line-height: 16px;
-
 }
 
 .width-img {
@@ -126,7 +126,6 @@ body {
   height: 2.5em;
   background-color: transparent;
   will-change: filter;
-
 }
 
 .header-right {
@@ -140,7 +139,7 @@ body {
   width: 150px;
 }
 
-.logo>span {
+.logo > span {
   position: relative;
   margin: 10% auto;
   /* font-family: 'Poppins'; */
@@ -156,3 +155,8 @@ body {
 .logo.vanilla:hover {
   filter: drop-shadow(0 0 2em #f7df1eaa);
 } */
+
+.form-select:focus {
+  border-color: #d9d9d9 !important;
+  box-shadow: 0 0 0 0.25rem rgb(173 181 189 / 50%);
+}
