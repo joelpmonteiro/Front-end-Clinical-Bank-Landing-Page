@@ -1,0 +1,162 @@
+:root {
+  font-family: Inter;
+  font-size: 16px;
+  line-height: 24px;
+  font-weight: 400;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-text-size-adjust: 100%;
+}
+
+html,
+body {
+  width: 100%;
+  height: 100%;
+  /* object-fit: cover; */
+  background: #efefef;
+}
+
+.colorBlueTransparent {
+  color: #00c5c7 !important;
+}
+
+/* body {
+  background: linear-gradient(300.76deg, rgba(177, 177, 177, 0.51) -15.24%, #FFFFFF 78.85%);
+} */
+
+.loading div {
+  width: 1rem;
+  height: 1rem;
+  margin: 2rem 0.3rem;
+  background: #979fd0;
+  border-radius: 50%;
+  -webkit-animation: 0.9s bounce infinite alternate;
+  animation: 0.9s bounce infinite alternate;
+}
+
+.loading div:nth-child(2) {
+  -webkit-animation-delay: 0.3s;
+  animation-delay: 0.3s;
+}
+
+.loading div:nth-child(3) {
+  -webkit-animation-delay: 0.6s;
+  animation-delay: 0.6s;
+}
+
+#app {
+  height: calc(var(--vh, 1vh) * 100);
+}
+
+.separator {
+  opacity: 0.1;
+  border: 1px solid #217bf4;
+  margin-top: 0px;
+}
+
+.text-color {
+  position: relative;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 45px;
+  line-height: 40px;
+  color: #2175f4;
+}
+
+.text-width {
+  position: relative;
+  max-width: 100%;
+  width: 420px;
+  height: 85px;
+}
+
+.txt-background {
+  background: #217bf4;
+  border-radius: 12px;
+  font-style: normal;
+  font-weight: 400;
+  text-align: center;
+  font-size: 16px;
+  line-height: 16px;
+}
+
+.width-img {
+  max-width: 100%;
+  width: 400px;
+}
+
+.border-radius {
+  border-radius: 12px;
+}
+
+.sub-text {
+  position: relative;
+  width: 100px;
+  height: 10px;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 15px;
+  line-height: 20px;
+  color: black;
+  letter-spacing: 0.1px;
+}
+
+.text-strong {
+  font-style: normal;
+  font-weight: 700;
+  font-size: 15px;
+}
+
+.sub-text-element {
+  position: relative;
+  width: 100px;
+  height: 10px;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 15px;
+  line-height: 30px;
+  color: black;
+  letter-spacing: 0.1px;
+}
+
+.logo {
+  height: 2.5em;
+  background-color: transparent;
+  will-change: filter;
+}
+
+.header-right {
+  position: relative;
+  margin: auto;
+  top: 5px;
+}
+
+.img-width {
+  max-width: 100%;
+  width: 150px;
+}
+
+.logo > span {
+  position: relative;
+  margin: 10% auto;
+  /* font-family: 'Poppins'; */
+  font-style: normal;
+  font-weight: 600;
+  font-size: 16px;
+  color: #2b2b39;
+}
+
+/* .logo:hover {
+  filter: drop-shadow(0 0 2em #646cffaa);
+}
+.logo.vanilla:hover {
+  filter: drop-shadow(0 0 2em #f7df1eaa);
+} */
+
+.form-select:focus {
+  border-color: #d9d9d9 !important;
+  box-shadow: 0 0 0 0.25rem rgb(173 181 189 / 50%);
+}

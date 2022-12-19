@@ -1,19 +1,19 @@
-import "dotenv/config";
-import { resolve } from "path";
-import { defineConfig } from "vite";
+import { fileURLToPath, URL } from "node:url";
 
+import { defineConfig } from "vite";
+import vue from "@vitejs/plugin-vue";
+
+// https://vitejs.dev/config/
 export default defineConfig({
-  root: "src",
-  // define: {
-  //   env: loadEnv("mode", process.cwd(), ""),
-  // },
+  plugins: [vue()],
+  base: "./",
   build: {
-    outDir: "../dist",
-    rollupOptions: {
-      input: {
-        main: resolve(__dirname, "src/index.html"),
-        nested: resolve(__dirname, "src/ConsulteCredito/credito.html"),
-      },
+    outDir: "./lp", //Added
+  },
+  resolve: {
+    alias: {
+      "@": fileURLToPath(new URL("./src", import.meta.url)),
+      vue: "vue/dist/vue.esm-bundler.js",
     },
   },
 });
