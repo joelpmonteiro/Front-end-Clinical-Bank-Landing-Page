@@ -18,17 +18,17 @@
       <div class="col-10 col-sm-6 col-md-6 col-lg-4">
         <form id="formCPF" method="post" @submit.prevent="sendDataNeurotech">
           <div class="input-group mb-3">
-            <input type="text" v-model.lazy="data_user[2].Value"
+            <input type="text" v-model.lazy="data_user.name"
               class="form-control text-center form-control-lg backgroundInput" placeholder="digite seu nome" />
           </div>
           <div class="input-group mb-3">
-            <input type="date" v-model.lazy="data_user[1].Value"
-              class="form-control text-center fw-normal form-control-lg backgroundInput" placeholder="teste" />
+            <input type="date" v-model.lazy="data_user.birth_date"
+              class="form-control text-center fw-normal form-control-lg backgroundInput" placeholder="" />
           </div>
           <div class="input-group mb-3">
             <input style="padding-left: 0px" type="text"
               class="form-control text-center form-control-lg backgroundInput" placeholder="digite seu cpf"
-              maxlength="14" v-model="data_user[0].Value" v-on:input="mascara" />
+              maxlength="14" v-model="data_user.registry_code" v-on:input="mascara" />
           </div>
 
           <div class="row ms-auto">
@@ -49,51 +49,17 @@
 
 <script setup>
 import { ref, toRaw } from "vue";
-import { postDataNeurotech } from "../../services/axios";
-import { formatDate } from "../../services/neurotech";
+import { postDataNeurotech } from "../../services/axios.js";
+import { formatDate } from "../../services/neurotech.js";
 import LayoutImgVue from "../LayoutImg.vue";
 const emit = defineEmits(["sendGetData"]);
-const sendForm = {
-  Submit: {
-    Id: new Date().getTime(),
-    Inputs: [],
-    Policy: "CLINICAL_BANK_PRONTO",
-    ResultingVariable: "FLX_PRINCIPAL",
-    Version: "V2.0",
-  },
-  Authentication: {
-    Login: import.meta.env.VITE_AuthenticationLogin,
-    Password: import.meta.env.VITE_AuthenticationPassword,
-    Properties: [
-      {
-        Key: "FILIAL_ID",
-        Value: "0",
-      },
-    ],
-  },
-  Properties: [
-    {
-      Key: "USUARIO",
-      Value: "CLINICAL_BANK_API",
-    },
-  ],
-};
-const data_user = ref([
-  {
-    Name: "PROP_CPF",
-    Value: "434.466.418-31",
-  },
-  {
-    Name: "PROP_DATA_NASCIMENTO",
-    Value: null,
-  },
-  {
-    Name: "PROP_NOME",
-    Value: "Caique de Souza Boas",
-  },
-]);
+
+const data_user = ref({
+  registry_code: "434.466.418-31",
+  birth_date: null,
+  name: "Caique de Souza Boas",
+});
 const proposta = ref([]);
-// const cpf = ref("");
 
 //Starter Function
 const sendDataNeurotech = async () => {
@@ -102,45 +68,20 @@ const sendDataNeurotech = async () => {
   try {
     btn_loading.classList.remove("d-none");
     const userData = toRaw(data_user.value);
-    const newDate = formatDate(new Date(data_user.value[1].Value));
-    userData[1].Value = newDate;
-    userData[0].Value = userData[0].Value.replace(/\D/g, "");
-    sendForm.Submit.Inputs = userData;
+    const newDate = formatDate(new Date(data_user.value.birth_date));
+    console.log("userData:", userData);
+    console.log("newDate:", newDate);
+    userData.birth_date = newDate;
+    userData.registry_code = userData.registry_code.replace(/\D/g, "");
+    //sendForm.Submit.Inputs = userData;
 
-    const { data, status } = await postDataNeurotech(sendForm);
-
-    if (status === 200 && data.Result.Result !== "REPROVADO") {
-      const { Outputs: outputs } = data.Result;
-      outputs.forEach((element) => {
-        if (element.Key == "CALC_VALOR_CONTRATO") {
-          proposta.value.push({
-            name: "CALC_VALOR_CONTRATO",
-            value: element.Value,
-          });
-        }
-
-        if (element.Key == "CALC_VALOR_CONTRATO_FINAL") {
-          proposta.value.push({
-            name: "CALC_VALOR_CONTRATO_FINAL",
-            value: element.Value,
-          });
-        }
-
-        if (element.Key == "CALC_VALOR_PARCELA") {
-          proposta.value.push({
-            name: "CALC_VALOR_PARCELA",
-            value: element.Value,
-          });
-        }
-
-        if (element.Key == "CALC_VALOR_PARCELA_FINAL") {
-          proposta.value.push({
-            name: "CALC_VALOR_PARCELA_FINAL",
-            value: element.Value,
-          });
-        }
+    const { data, status } = await postDataNeurotech(userData);
+    console.log({ data, status });
+    if (status === 200 && data.result === "APROVADO") {
+      proposta.value.push({
+        name: "Credito_Aprovado",
+        value: data,
       });
-
       sessionStorage.setItem("form-neurotech", JSON.stringify(data_user.value));
       emit("sendGetData", proposta, true);
     } else {
@@ -148,7 +89,7 @@ const sendDataNeurotech = async () => {
     }
   } catch (error) {
     console.log(error);
-    alert("Erro ao pesquisar em nossos serviços!");
+    //alert("Erro ao pesquisar em nossos serviços!");
   } finally {
     btn_loading.classList.add("d-none");
   }
@@ -156,15 +97,15 @@ const sendDataNeurotech = async () => {
 
 function mascara() {
   //MaxLength Input
-  let v = data_user.value[0].Value;
+  let v = data_user.value.registry_code;
   if (isNaN(v[v.length - 1])) {
     // impede entrar outro caractere que não seja número
-    data_user.value[0].Value = v.substring(0, v.length - 1);
+    data_user.value.registry_code = v.substring(0, v.length - 1);
     return;
   }
   // i.setAttribute("maxlength", "14");
-  if (v.length == 3 || v.length == 7) data_user.value[0].Value += ".";
-  if (v.length == 11) data_user.value[0].Value += "-";
+  if (v.length == 3 || v.length == 7) data_user.value.registry_code += ".";
+  if (v.length == 11) data_user.value.registry_code += "-";
 }
 //End Function
 </script>

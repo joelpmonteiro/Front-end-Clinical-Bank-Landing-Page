@@ -63,28 +63,16 @@ const requestData = (data, { checkForm }) => {
 <template>
   <HeaderComponent></HeaderComponent>
 
-  <SimulateTreatment
-    v-if="!dataNeuro.credit.bool"
-    @sendGetData="getDataNeurotech"
-  ></SimulateTreatment>
+  <SimulateTreatment v-if="!dataNeuro.credit.bool" @sendGetData="getDataNeurotech"></SimulateTreatment>
 
-  <CreditApproved
-    v-if="dataNeuro.credit.bool && !objPassEmit.checkForm1"
-    :creditCard="dataNeuro.credit"
-    @sendPaymentData="approvedPaymentData"
-  >
+  <CreditApproved v-if="dataNeuro.credit.bool && !objPassEmit.checkForm1" :creditCard="dataNeuro.credit"
+    @sendPaymentData="approvedPaymentData">
   </CreditApproved>
 
-  <RequestData
-    v-if="objPassEmit.checkForm1 && !objPassEmit.checkForm2"
-    @emit-send-data-user="requestData"
-  >
+  <RequestData v-if="objPassEmit.checkForm1 && !objPassEmit.checkForm2" @emit-send-data-user="requestData">
   </RequestData>
 
-  <RequestCreditData
-    v-if="objPassEmit.checkForm2"
-    :paymentProps="computedAddress"
-  ></RequestCreditData>
+  <RequestCreditData v-if="objPassEmit.checkForm2" :paymentProps="computedAddress"></RequestCreditData>
 
   <CreditNotApproved v-if="check"></CreditNotApproved>
 </template>

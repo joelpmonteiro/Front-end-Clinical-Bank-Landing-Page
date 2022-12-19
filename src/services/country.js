@@ -176,7 +176,7 @@ export const country = [
   {
     id: 30,
     sortname: "BR",
-    name: "Brazil",
+    name: "Brasil",
     phoneCode: 55,
   },
   {

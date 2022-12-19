@@ -36,3 +36,11 @@ export function formatDate(date) {
   ].join("/");
 }
 
+// export function formatDatePay(date) {
+//   return [
+//     date.getUTCFullYear(),
+//     padTo2Digits(date.getUTCMonth() + 1),
+//     padTo2Digits(date.getUTCDate()),
+//   ].join("/");
+// }
+

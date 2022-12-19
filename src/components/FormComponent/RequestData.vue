@@ -66,6 +66,12 @@
                   </div>
                 </div>
                 <div class="form-group row">
+                  <div class="col-12 mb-3">
+                    <input type="text" class="form-control text-center form-control-md backgroundInput fw-bold"
+                      placeholder="Telefone" v-model="address.cell_number" />
+                  </div>
+                </div>
+                <div class="form-group row">
                   <div class="mb-2">
                     <label for="country" class="text-center fs-6 fw-bold lh-1 color-black">Selecione um País</label>
                     <div class="col-12">
@@ -75,11 +81,11 @@
                           backgroundInput
                           fw-bold
                           text-center
-                        " name="country" id="country">
+                        " name="country" id="country" @change="getAllStateAndGetCityComposition">
                         <option value="-1" selected disabled>
                           Selecione um País
                         </option>
-                        <option v-for="(value, index) in country" :key="index" :value="value.sortname">
+                        <option v-for="(value, index) in country" :key="index" :value="value.id">
                           {{ value.name }}
                         </option>
                       </select>
@@ -95,11 +101,12 @@
                           backgroundInput
                           fw-bold
                           text-center
-                        " name="state" id="state" v-model.number="selectedState">
+                        " name="state" id="state" v-model.number="selectedState"
+                        @change="getAllStateAndGetCityComposition">
                         <option value="-1" selected disabled>
                           Selecione um Estado
                         </option>
-                        <option v-for="(value, index) in compState" :key="index" :value="value.id">
+                        <option v-for="(value, index) in state" :key="index" :value="value.id">
                           {{ value.name }}
                         </option>
                       </select>
@@ -108,16 +115,17 @@
                   <div class="mb-2">
                     <label for="city" class="text-center fs-6 fw-bold lh-1 color-black">Selecione um cidade</label>
                     <div class="col-12">
-                      <select v-model.number="selectedCity" class="
-                          form-select form-select-md
-                          backgroundSelect
-                          backgroundInput
-                          text-center
-                        " name="city" id="city">
+                      <select class="
+                                                form-select form-select-md
+                                                backgroundSelect
+                                                backgroundInput
+                                                fw-bold
+                                                text-center
+                                              " name="city" id="city" v-model="selectedCity">
                         <option value="-1" selected disabled>
-                          Selecione uma cidade
+                          Selecione uma Cidade
                         </option>
-                        <option v-for="(value, index) in compCity" :key="index" :value="value.id">
+                        <option v-for="(value, index) in city" :key="index" :value="value.id">
                           {{ value.name }}
                         </option>
                       </select>
@@ -147,16 +155,21 @@
 <script>
 import { toRefs, ref, reactive, computed } from "vue";
 import { country } from "../../services/country.js";
-import { state } from "../../services/state.js";
-import { city } from "../../services/cities.js";
+// import { state } from "../../services/state.js";
+// import { city } from "../../services/cities.js";
+import {
+  requestDataUser,
+  getAllState,
+  getStateByCountry,
+} from "../../services/axios.js";
 export default {
   name: "RequestData",
   setup(props, { emit }) {
     let checkSavedInfor = ref("");
     const arrayDados = reactive({
       country: country,
-      city: city,
-      state: state,
+      city: [],
+      state: [],
     });
     const selectedObj = reactive({
       email: "",
@@ -166,51 +179,109 @@ export default {
         neighborhood: "",
         number: "",
         complement: "",
+        cell_number: "",
       },
       selectedCountry: -1,
       selectedState: -1,
       selectedCity: -1,
+      costumer_id: -1,
     });
 
-    const dataUserFunction = () => {
-      if (
-        selectedObj.email !== "" ||
-        selectedObj.address.street !== "" ||
-        selectedObj.address.zipcode !== "" ||
-        selectedObj.address.neighborhood !== "" ||
-        selectedObj.address.number !== "" ||
-        selectedObj.address.complement !== "" ||
-        selectedObj.selectedCity !== -1 ||
-        selectedObj.selectedCountry !== -1 ||
-        selectedObj.selectedState !== -1
-      ) {
-        checkSavedInfor.value = "display: none";
-        emit("emit-send-data-user", selectedObj, { checkForm: true });
-      } else {
-        alert("Preencha os dados corretamente!");
+    const dataUserFunction = async () => {
+      try {
+        if (
+          selectedObj.email !== "" ||
+          selectedObj.address.street !== "" ||
+          selectedObj.address.zipcode !== "" ||
+          selectedObj.address.neighborhood !== "" ||
+          selectedObj.address.number !== "" ||
+          selectedObj.address.complement !== "" ||
+          selectedObj.address.cell_number !== "" ||
+          selectedObj.selectedCountry !== -1 ||
+          selectedObj.selectedState !== -1
+        ) {
+          checkSavedInfor.value = "display: none";
+
+          const user_approved = JSON.parse(
+            sessionStorage.getItem("form-neurotech")
+          );
+
+          const split_date = user_approved.birth_date.split("/");
+          const new_format_data = `${split_date[2]}/${split_date[1]}/${split_date[0]}`;
+          //console.log(new_format_data);
+
+          const { data } = await requestDataUser({
+            email: selectedObj.email,
+            name: user_approved.name,
+            registry_code: "02509362160",
+            birth_date: new_format_data,
+            address: {
+              neighborhood: selectedObj.address.neighborhood,
+              street: selectedObj.address.street,
+              number: selectedObj.address.number,
+              zipcode: selectedObj.address.zipcode,
+              city: compCity.value[0].name,
+              state: compState.value[0].acronym,
+            },
+            contacts: [
+              {
+                phone_type: "MOBILE",
+                number: selectedObj.address.number,
+              },
+            ],
+          });
+          selectedObj.costumer_id = data.id;
+          emit("emit-send-data-user", selectedObj, { checkForm: true });
+        } else {
+          alert("Preencha os dados corretamente!");
+        }
+      } catch (error) {
+        if (error.response !== undefined) {
+          if (
+            error.response.status === 400 &&
+            error.response.data.code === 101
+          ) {
+            alert(error.response.data.error);
+          } else {
+            alert(error.response.data.error);
+          }
+        } else {
+          console.log(error);
+          alert("Erro ao cadastrar");
+        }
+      }
+    };
+    const genr = (t) => {
+      const { data, status } = t;
+      if (status === 200) return data;
+    };
+    const getAllStateAndGetCityComposition = async () => {
+      try {
+        if (
+          selectedObj.selectedState === -1 ||
+          selectedObj.selectedState === 0
+        ) {
+          arrayDados.state = genr(await getAllState());
+        } else {
+          const city = genr(
+            await getStateByCountry({ state_id: selectedObj.selectedState })
+          );
+          arrayDados.city = city.cities;
+        }
+      } catch (error) {
+        console.log(error);
+        alert("Erro ao buscar os Estados e cidades!");
       }
     };
 
-    computed
-    const compCountrySelected = computed(() => {
-      return arrayDados.country.filter(
-        (value) => value.sortname === selectedObj.selectedCountry
-      );
-    });
-
     const compState = computed(() => {
-      const [country] = compCountrySelected.value;
-      return arrayDados.state.filter((value) =>
-        selectedObj.selectedCountry === -1
-          ? value.country_id
-          : parseInt(value.country_id) === country.id
+      return arrayDados.state.filter(
+        (value) => value.id === selectedObj.selectedState
       );
     });
     const compCity = computed(() => {
-      return arrayDados.city.filter((value) =>
-        selectedObj.selectedState === -1
-          ? value.state_id
-          : parseInt(value.state_id) === selectedObj.selectedState
+      return arrayDados.city.filter(
+        (value) => value.id === selectedObj.selectedCity
       );
     });
 
@@ -221,6 +292,7 @@ export default {
       compState,
       compCity,
       checkSavedInfor,
+      getAllStateAndGetCityComposition,
     };
   },
 };

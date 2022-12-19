@@ -1,18 +1,11 @@
+<script setup>
+import { RouterView } from "vue-router";
+</script>
+
 <template>
   <RouterView />
 </template>
 
-<script>
-import { computed, reactive, toRefs } from "vue";
-export default {
-  // components: {
+<style>
 
-  // },
-  setup() {
-    return {};
-  },
-};
-</script>
-
-<style scoped>
 </style>

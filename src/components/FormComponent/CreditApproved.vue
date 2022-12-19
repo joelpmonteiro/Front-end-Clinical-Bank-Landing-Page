@@ -25,12 +25,12 @@
             <div class="form-group mb-3">
               <label for="" class="fw-bolder">Valor de Crédito Aprovado:</label>
               <input type="text" disabled class="form-control text-center form-control-sm backgroundInput fw-bold"
-                placeholder="R$ xxxx,xx" @keyup="mascaraMoney" :value="valueApprovedComputed.vApproved" />
+                placeholder="R$ xxxx,xx" @keyup="mascaraMoney" :value="valueApprovedComputed.amount" />
             </div>
             <div class="form-group mb-3">
               <label for="" class="fw-bolder">Limite Max. Parcela:</label>
               <input type="text" disabled class="form-control text-center form-control-sm backgroundInput fw-bold"
-                placeholder="R$ xx,xx" :value="valueApprovedComputed.parcelas" />
+                placeholder="R$ xx,xx" :value="valueApprovedComputed.installments" />
             </div>
             <div class="form-group mb-3">
               <label for="" class="fw-bolder">Valor Total do Tratamento:</label>
@@ -44,7 +44,7 @@
             </div>
           </div>
           <div class="col-9 col-sm-12 col-md-8 col-lg-2 mb-1">
-            <div class="form-group mb-3">
+            <!-- <div class="form-group mb-3">
               <label class="text-center fw-bolder" for="">Meio de Pagamento:</label>
               <select v-model.lazy="selectItem"
                 class="form-select form-select-sm backgroundSelect backgroundInput fw-bold text-center" name="payment"
@@ -54,16 +54,15 @@
                   {{ value }}
                 </option>
               </select>
-            </div>
+            </div> -->
 
             <div class="input-group mb-3" v-for="(value, index) in installmentsFinancial" :key="index">
-              <!-- <span class="input-group-text">6x</span> -->
               <button class="btn w-25 btn-outline-secondary buttonGroup fw-bolder" type="button"
                 @click.prevent="selectItemParcel(value)">
-                {{ value }}x
+                {{ value.installments }}x
               </button>
               <input disabled type="text" class="form-control text-center form-control-md backgroundInput fw-bold"
-                placeholder="R$ " :value="(valueApprovedComputed.vApproved / value).toFixed(2)" />
+                placeholder="R$ " :value="value.amount" />
             </div>
           </div>
         </div>
@@ -79,10 +78,11 @@
 </template>
 <script>
 import { toRefs, ref, reactive, onMounted, computed, watch } from "vue";
-import { formatNumber } from "../../util/formatMoney";
+import { formatNumber } from "../../util/formatMoney.js";
+import { creditSimulation } from "../../services/axios.js";
 
 export default {
-  name: "RequestData",
+  name: "CreditApproved",
   props: {
     creditCard: {
       type: Object,
@@ -97,11 +97,10 @@ export default {
       tedOrDoc: "",
       cardCredit: "",
     });
-    const selectedParcelItem = ref(-1);
+    const selectedParcelItem = ref({});
     let valor_approved = { vApproved: null, parcelas: null };
 
-    const totalParcel = ref([6, 12, 18]); //3, 6, 9, 10, 12
-
+    const installmentsFinancial = ref([]);
     const calcRemaining = ref(null);
     const valueTotal = ref(null);
     const selectItem = ref(-1);
@@ -137,38 +136,23 @@ export default {
       },
     });
 
-    // const sendPayment = () => {
-    //   if (listHandle.value.length > 1) {
-    //     const modal = document.querySelector("#ModalValue");
-    //     // eslint-disable-next-line no-undef
-    //     modal.classList.add("show");
-    //     modal.setAttribute("style", "display:block");
-    //   } else {
-    //     emit("sendPaymentData", {
-    //       valueTotal: valueTotal.value,
-    //       methodsPay: listHandle.value,
-    //       selectedParcel: selectedParcelItem.value,
-    //       checkForm: true,
-    //     });
-    //   }
-    // };
-
     const selectItemParcel = (item) => {
+      console.log(item);
       selectedParcelItem.value = item;
     };
     const nextStepPayment = () => {
       if (
-        selectedParcelItem.value > 0 &&
-        valueTotal.value !== "" &&
-        selectItem.value > 0
+        selectedParcelItem.value.amount > 0 &&
+        selectedParcelItem.value.installments > 0 &&
+        parseFloat(valueTotal.value.replace(".", "").replace(",", ".")) > 0
       ) {
-        const pay = arrayTypePayment.value.find((value, index) => {
-          return index === selectItem.value;
-        });
+        // const pay = arrayTypePayment.value.find((value, index) => {
+        //   return index === selectItem.value;
+        // });
 
         emit("sendPaymentData", {
           valueTotal: valueTotal.value,
-          methodsPay: pay,
+          // methodsPay: pay,
           selectedParcel: selectedParcelItem.value,
           checkForm: true,
         });
@@ -184,26 +168,36 @@ export default {
           parseFloat(newValue.cardCredit) >
           parseFloat(valueApprovedComputed.value.vApproved)
         ) {
-          alert("Digite um valor valido ou Menor do que " + valor_approved.vApproved);
+          alert(
+            "Digite um valor valido ou Menor do que " + valor_approved.vApproved
+          );
           listValueTypePayment.cardCredit = "";
         }
         if (
-          parseFloat(newValue.debito) > parseFloat(valueApprovedComputed.value.vApproved)
+          parseFloat(newValue.debito) >
+          parseFloat(valueApprovedComputed.value.vApproved)
         ) {
-          alert("Digite um valor valido ou Menor do que " + valor_approved.vApproved);
+          alert(
+            "Digite um valor valido ou Menor do que " + valor_approved.vApproved
+          );
           listValueTypePayment.debito = "";
         }
         if (
-          parseFloat(newValue.pix) > parseFloat(valueApprovedComputed.value.vApproved)
+          parseFloat(newValue.pix) >
+          parseFloat(valueApprovedComputed.value.vApproved)
         ) {
-          alert("Digite um valor valido ou Menor do que " + valor_approved.vApproved);
+          alert(
+            "Digite um valor valido ou Menor do que " + valor_approved.vApproved
+          );
           listValueTypePayment.pix = "";
         }
         if (
           parseFloat(newValue.tedOrDoc) >
           parseFloat(valueApprovedComputed.value.vApproved)
         ) {
-          alert("Digite um valor valido ou Menor do que " + valor_approved.vApproved);
+          alert(
+            "Digite um valor valido ou Menor do que " + valor_approved.vApproved
+          );
           listValueTypePayment.tedOrDoc = "";
         }
       },
@@ -212,41 +206,40 @@ export default {
     //
 
     watch(valueTotal, () => {
+      console.log("watch:", valueApprovedComputed.value.amount);
       const formaValue = valueTotal.value.replace(".", "").replace(",", ".");
-      calcRemaining.value = Math.abs(formaValue - valor_approved.vApproved).toFixed(2);
-    });
-    //Init Compute
-    const calcCom = computed(() => {
-      if (valor_approved.vApproved === null || valor_approved.vApproved === 0) return 0;
-      const formaValue = valueTotal.value.replace(".", "").replace(",", ".");
-      return Math.abs(formaValue - valor_approved.vApproved).toFixed(2);
-      //return Math.abs(valueTotal.value - valor_approved.vApproved).toFixed(2);
+      calcRemaining.value = Math.abs(
+        formaValue - valueApprovedComputed.value.amount
+      ).toFixed(2);
     });
 
-    const installmentsFinancial = computed(() => {
-      return totalParcel.value.filter((value) =>
-        (valueApprovedComputed.value.vApproved / value).toFixed(2)
-      );
-    });
     const valueApprovedComputed = computed(() => {
-      let y = {};
-      valueProps.values.forEach((el) => {
-        if (el.name === "CALC_VALOR_CONTRATO") y.vApproved = el.value;
-        if (el.name === "CALC_VALOR_PARCELA") y.parcelas = el.value;
-      });
-      return y;
+      let valueCredi = {};
+      if (valueProps.values.length >= 1) {
+        let [y] = valueProps.values;
+        valueCredi = {
+          amount: y.value.amount,
+          installments: y.value.maxInstallmentValue,
+        };
+      }
+
+      return valueCredi;
     });
     //
     onMounted(() => {
-      if (props.creditCard.values !== null) {
-        props.creditCard.values.forEach((element) => {
-          if (element.name === "CALC_VALOR_CONTRATO") {
-            valor_approved.vApproved = element.value;
-          }
-          if (element.name === "CALC_VALOR_PARCELA")
-            valor_approved.parcelas = element.value;
+      creditSimulation({
+        amount: valueApprovedComputed.value.amount,
+        maxInstallmentValue: valueApprovedComputed.value.installments,
+      })
+        .then((result) => {
+          console.log("resultado final: ", result);
+          const { data } = result.data;
+          installmentsFinancial.value = data;
+        })
+        .catch((err) => {
+          alert("Erro ao simular o valor total e as parcelas!");
+          console.log(err);
         });
-      }
     });
 
     return {
@@ -255,8 +248,7 @@ export default {
       arrayTypePayment,
       selectItem,
       listHandle,
-      calcCom,
-      totalParcel,
+      // calcCom,
       valueApprovedComputed,
       installmentsFinancial,
       selectItemParcel,
@@ -276,7 +268,7 @@ export default {
 }
 
 .buttonGroup {
-  background-color: #B5B5B5;
+  background-color: #b5b5b5;
   color: black;
 }
 

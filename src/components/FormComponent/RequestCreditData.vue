@@ -72,7 +72,7 @@
             <button @click.prevent="approvedPayment"
               class="col-2 col-sm-2 col-md-2 col-lg-3 btn btn-md backgroundBlueTransparent text-white fw-bold"
               id="confirmedPayment" type="submit">
-              <span class="spinner-border spinner-border-sm d-block"></span>
+              <span class="spinner-border spinner-border-sm d-none"></span>
               Confirmar
             </button>
           </div>
@@ -83,8 +83,7 @@
 </template>
 <script>
 import { computed, reactive, toRefs } from "vue";
-import { makePaymentCardCredit } from "../../services/axios";
-import { typePayment } from "../../util/typePayment";
+import { makePaymentCardCredit } from "../../services/axios.js";
 
 export default {
   name: "RequestCreditData",
@@ -111,7 +110,6 @@ export default {
     };
 
     const updateProps = computed(() => {
-      console.log(props);
       return props.paymentProps;
     });
     const approvedPayment = async () => {
@@ -125,49 +123,33 @@ export default {
           paymentObj.cardcvv !== ""
         ) {
           if (sessionStorage.getItem("form-neurotech")) {
-            const jsonUserApproved = JSON.parse(sessionStorage.getItem("form-neurotech"));
-            const { dataCredit, userInf, neurotech } = updateProps.value;
+            // const jsonUserApproved = JSON.parse(
+            //   sessionStorage.getItem("form-neurotech")
+            // );
+            const { dataCredit, userInf } = updateProps.value;
 
-            // const arrayPaymentJson = dataCredit.methodsPay.map((value) => {
-            //   return typePayment(value, {
-            //     holder_name: paymentObj.cardName,
-            //     card_expiration: paymentObj.cardDueDate,
-            //     card_number: paymentObj.cardNumber,
-            //     card_cvv: paymentObj.cardcvv,
-            //   });
-            // });
-            const neurotechApproved = neurotech.find(
-              (value) => value.name === "CALC_VALOR_CONTRATO"
-            );
-            const arrayPaymentJson = typePayment(
-              { name: dataCredit.methodsPay, neurotech: neurotechApproved },
-              {
+
+            //console.log(json);
+
+            const { status } = await makePaymentCardCredit({
+              installments: dataCredit.selectedParcel.installments,
+              amount: dataCredit.selectedParcel.amount,
+              installmentValue: dataCredit.selectedParcel.installmentValue,
+              hash: dataCredit.selectedParcel.hash,
+              valueClinicalBank: dataCredit.selectedParcel.valueClinicalBank,
+              customer_id: userInf.costumer_id,
+              company_id: "b00cd1fd-b20f-49f1-97a2-88407d36c7fd",
+              user_id: "31b86d3e-9790-4b88-9846-c337f16f385c",
+              card: {
                 holder_name: paymentObj.cardName,
                 card_expiration: paymentObj.cardDueDate,
                 card_number: paymentObj.cardNumber,
                 card_cvv: paymentObj.cardcvv,
-              }
-            );
+                payment_method_code: "credit_card",
+              },
+            });
 
-            const json = {
-              name: jsonUserApproved.find((value) => value.Name === "PROP_NOME").Value,
-              cpf: jsonUserApproved.find((value) => value.Name === "PROP_CPF").Value,
-              email: userInf.email,
-              address: { ...userInf.address },
-              installments: dataCredit.selectedParcel,
-              financing_amount: neurotech.find(
-                (value) => value.name === "CALC_VALOR_CONTRATO"
-              ).value,
-              max_amount_installment: neurotech.find(
-                (value) => value.name === "CALC_VALOR_PARCELA"
-              ).value,
-              selected_options: [arrayPaymentJson],
-            };
-            //console.log(json);
-
-            const { data, status } = await makePaymentCardCredit(json);
-
-            if (status === 200 && data.code === 200) {
+            if (status === 201) {
               alert("Pagamento feito com sucesso!");
             }
           }
