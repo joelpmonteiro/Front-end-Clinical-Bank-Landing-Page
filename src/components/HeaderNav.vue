@@ -2,12 +2,9 @@
   <nav class="navbar container p-2">
     <div class="col-sm-2 logo">
       <div class="header-right">
-        <img
-          alt="logo"
-          class="img-width"
-          loading="lazy"
-          src="../assets/img/logo.png"
-        />
+        <a href="/">
+          <img alt="logo" class="img-width" loading="lazy" src="../assets/img/logo.png" />
+        </a>
       </div>
     </div>
     <div class="d-flex flex-row-reverse">
@@ -21,7 +18,7 @@
 
 <script>
 export default {
-  name: 'HeaderNav',
+  name: "HeaderNav",
 };
 </script>
 

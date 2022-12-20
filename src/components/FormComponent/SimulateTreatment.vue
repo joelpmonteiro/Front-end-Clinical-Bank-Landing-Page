@@ -69,8 +69,6 @@ const sendDataNeurotech = async () => {
     btn_loading.classList.remove("d-none");
     const userData = toRaw(data_user.value);
     const newDate = formatDate(new Date(data_user.value.birth_date));
-    console.log("userData:", userData);
-    console.log("newDate:", newDate);
     userData.birth_date = newDate;
     userData.registry_code = userData.registry_code.replace(/\D/g, "");
     //sendForm.Submit.Inputs = userData;
@@ -85,6 +83,7 @@ const sendDataNeurotech = async () => {
       sessionStorage.setItem("form-neurotech", JSON.stringify(data_user.value));
       emit("sendGetData", proposta, true);
     } else {
+      console.log('entrou')
       emit("sendGetData", [], false);
     }
   } catch (error) {
