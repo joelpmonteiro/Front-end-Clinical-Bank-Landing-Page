@@ -3,12 +3,14 @@
     <nav class="navbar p-2">
       <div class="col-sm-2 logo">
         <div class="header-right">
-          <img
-            alt="logo"
-            class="img-width"
-            loading="lazy"
-            src="../../assets/img/logo.png"
-          />
+          <a href="/">
+            <img
+              alt="logo"
+              class="img-width"
+              loading="lazy"
+              src="../../assets/img/logo.png"
+            />
+          </a>
         </div>
       </div>
       <!-- <div class="d-flex flex-row-reverse">
@@ -20,6 +22,5 @@
     </nav>
   </div>
 </template>
-<script setup>
-</script>
+<script setup></script>
 <style lang=""></style>

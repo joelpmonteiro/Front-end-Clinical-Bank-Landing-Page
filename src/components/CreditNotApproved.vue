@@ -26,6 +26,7 @@
     </div>
     <div class="d-flex justify-content-center pt-5">
       <button
+        @click="back"
         class="col-2 col-sm-2 col-md-2 col-lg-2 btn btn-sm bt backgroundBlueTransparent text-white fw-bold"
       >
         Voltar
@@ -33,8 +34,13 @@
     </div>
   </section>
 </template>
-<script>
-export default {};
+<script setup>
+import { useRouter } from "vue-router";
+const router = useRouter();
+
+const back = async () => {
+  router.go(0);
+};
 </script>
 <style scoped>
 .text-color {

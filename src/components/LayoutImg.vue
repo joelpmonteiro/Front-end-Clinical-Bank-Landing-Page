@@ -1,7 +1,9 @@
 <template>
   <div class="col-10 col-sm-6 col-md-6 col-lg-5 me-5" style="margin-top: -3em">
     <div class="row">
-      <img class="w-50" loading="lazy" src="../assets/Group_1.png" />
+      <a href="/">
+        <img class="w-50" loading="lazy" src="../assets/Group_1.png" />
+      </a>
     </div>
   </div>
 </template>
@@ -10,6 +12,4 @@
 export default {};
 </script>
 
-<style>
-
-</style>
+<style></style>
