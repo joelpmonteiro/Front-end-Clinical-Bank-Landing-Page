@@ -10,29 +10,44 @@
       <div class="col-12 col-sm-10 col-md-6 col-lg-4">
         <span class="fs-6 fw-bold lh-1 color-black">Consulte Crédito do seu CPF</span>
       </div>
-
     </div>
 
     <div class="d-flex justify-content-between row ms-lg-5 pt-2">
-
       <div class="col-10 col-sm-6 col-md-6 col-lg-4">
         <form id="formCPF" method="post" @submit.prevent="sendDataNeurotech">
           <div class="input-group mb-3">
-            <input type="text" v-model.lazy="data_user.name"
-              class="form-control text-center form-control-lg backgroundInput" placeholder="digite seu nome" />
+            <input
+              type="text"
+              v-model.lazy="data_user.name"
+              class="form-control text-center form-control-lg backgroundInput"
+              placeholder="digite seu nome"
+            />
           </div>
           <div class="input-group mb-3">
-            <input type="date" v-model.lazy="data_user.birth_date"
-              class="form-control text-center fw-normal form-control-lg backgroundInput" placeholder="" />
+            <input
+              type="date"
+              v-model.lazy="data_user.birth_date"
+              class="form-control text-center fw-normal form-control-lg backgroundInput"
+              placeholder=""
+            />
           </div>
           <div class="input-group mb-3">
-            <input style="padding-left: 0px" type="text"
-              class="form-control text-center form-control-lg backgroundInput" placeholder="digite seu cpf"
-              maxlength="14" v-model="data_user.registry_code" v-on:input="mascara" />
+            <input
+              style="padding-left: 0px"
+              type="text"
+              class="form-control text-center form-control-lg backgroundInput"
+              placeholder="digite seu cpf"
+              maxlength="14"
+              v-model="data_user.registry_code"
+              v-on:input="mascara"
+            />
           </div>
 
           <div class="row ms-auto">
-            <button class="col-8 btn btn-sm backgroundBlueTransparent text-white fw-bold" type="submit">
+            <button
+              class="col-8 btn btn-sm backgroundBlueTransparent text-white fw-bold"
+              type="submit"
+            >
               <span class="spinner-border spinner-border-sm d-none"></span>
               Consultar
             </button>
@@ -40,10 +55,7 @@
         </form>
       </div>
       <LayoutImgVue />
-
-
     </div>
-
   </main>
 </template>
 
@@ -55,9 +67,9 @@ import LayoutImgVue from "../LayoutImg.vue";
 const emit = defineEmits(["sendGetData"]);
 
 const data_user = ref({
-  registry_code: "434.466.418-31",
+  registry_code: "",
   birth_date: null,
-  name: "Caique de Souza Boas",
+  name: "",
 });
 const proposta = ref([]);
 
@@ -83,7 +95,7 @@ const sendDataNeurotech = async () => {
       sessionStorage.setItem("form-neurotech", JSON.stringify(data_user.value));
       emit("sendGetData", proposta, true);
     } else {
-      console.log('entrou')
+      console.log("entrou");
       emit("sendGetData", [], false);
     }
   } catch (error) {
