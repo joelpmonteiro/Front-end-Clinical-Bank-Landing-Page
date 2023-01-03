@@ -13,7 +13,7 @@
     </div>
 
     <div class="d-flex justify-content-between row ms-lg-5 pt-2">
-      <div class="col-10 col-sm-6 col-md-6 col-lg-4">
+      <div class="col-12 col-sm-10 col-md-10 col-lg-4">
         <form id="formCPF" method="post" @submit.prevent="sendDataNeurotech">
           <div class="input-group mb-3">
             <input
@@ -100,7 +100,7 @@ const sendDataNeurotech = async () => {
     }
   } catch (error) {
     console.log(error);
-    //alert("Erro ao pesquisar em nossos serviços!");
+    alert("Erro ao pesquisar em nossos serviços!");
   } finally {
     btn_loading.classList.add("d-none");
   }
