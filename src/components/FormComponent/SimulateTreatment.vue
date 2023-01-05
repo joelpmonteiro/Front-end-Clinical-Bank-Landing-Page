@@ -16,38 +16,24 @@
       <div class="col-12 col-sm-10 col-md-10 col-lg-4">
         <form id="formCPF" method="post" @submit.prevent="sendDataNeurotech">
           <div class="input-group mb-3">
-            <input
-              type="text"
-              v-model.lazy="data_user.name"
-              class="form-control text-center form-control-lg backgroundInput"
-              placeholder="digite seu nome"
-            />
+            <input type="text" v-model.lazy="data_user.name"
+              class="form-control text-center form-control-lg backgroundInput" placeholder="Digite seu nome" />
           </div>
           <div class="input-group mb-3">
-            <input
-              type="date"
-              v-model.lazy="data_user.birth_date"
+            <input :type="typeInput" @focus="typeInput = 'date'"
+              @blur="(data_user.birth_date === '' || data_user.birth_date === null ? typeInput = 'text' : typeInput = 'date')"
+              @mouseover="typeInput = 'date'" v-model.lazy="data_user.birth_date"
               class="form-control text-center fw-normal form-control-lg backgroundInput"
-              placeholder=""
-            />
+              placeholder="Digite data de nascimento" />
           </div>
           <div class="input-group mb-3">
-            <input
-              style="padding-left: 0px"
-              type="text"
-              class="form-control text-center form-control-lg backgroundInput"
-              placeholder="digite seu cpf"
-              maxlength="14"
-              v-model="data_user.registry_code"
-              v-on:input="mascara"
-            />
+            <input style="padding-left: 0px" type="text"
+              class="form-control text-center form-control-lg backgroundInput" placeholder="Digite seu cpf"
+              maxlength="14" v-model="data_user.registry_code" v-on:input="mascara" />
           </div>
 
           <div class="row ms-auto">
-            <button
-              class="col-8 btn btn-sm backgroundBlueTransparent text-white fw-bold"
-              type="submit"
-            >
+            <button class="col-8 btn btn-sm backgroundBlueTransparent text-white fw-bold" type="submit">
               <span class="spinner-border spinner-border-sm d-none"></span>
               Consultar
             </button>
@@ -65,11 +51,13 @@ import { postDataNeurotech } from "../../services/axios.js";
 import { formatDate } from "../../services/neurotech.js";
 import LayoutImgVue from "../LayoutImg.vue";
 const emit = defineEmits(["sendGetData"]);
+//Type input txt in input date
+const typeInput = ref("text");
 
 const data_user = ref({
-  registry_code: "",
+  registry_code: "267.875.008-66",
   birth_date: null,
-  name: "",
+  name: "FLAVIO R DE MORAES VIOLA",
 });
 const proposta = ref([]);
 
