@@ -1,34 +1,28 @@
 <template>
   <section class="container container-sm container-md container-lg">
     <div class="d-flex justify-content-center row">
-      <div class="col-12 col-sm-10 col-md-6 col-lg-4">
-        <span class="text-color colorBlueTransparent">Crédito Não Aprovado</span>
+      <div class="col-12 col-sm-10 col-md-8 col-lg-6 col-xl-6 col-xxl-4">
+        <div class="text-center">
+          <span class="text-color colorBlueTransparent">Crédito Não Aprovado</span>
+        </div>
       </div>
     </div>
     <div class="d-flex justify-content-center row pt-3">
-      <div class="col-12 col-sm-12 col-md-6 col-lg-3">
+      <div class="col-7 col-sm-7 col-md-5 col-lg-4 col-xl-3 col-xxl-4">
         <div class="text-center">
-          <span class="fs-6 fw-bold lh-1 color-black"
-            >Conforme analise não foi possível realizar a sua solicitação.</span
-          >
+          <span class="fs-6 fw-bold lh-1 color-black">Conforme analise não foi possível realizar a sua
+            solicitação.</span>
         </div>
       </div>
     </div>
     <div class="d-flex justify-content-center pt-5 mb-4">
       <div class="">
-        <img
-          width="321"
-          height="292"
-          loading="lazy"
-          src="../assets/creditNotApproved.png"
-        />
+        <img width="321" height="292" loading="lazy" src="../assets/creditNotApproved.png" />
       </div>
     </div>
     <div class="d-flex justify-content-center pt-5">
-      <button
-        @click="back"
-        class="col-2 col-sm-2 col-md-2 col-lg-2 btn btn-sm bt backgroundBlueTransparent text-white fw-bold"
-      >
+      <button @click="back"
+        class="col-2 col-sm-2 col-md-2 col-lg-2 btn btn-sm bt backgroundBlueTransparent text-white fw-bold">
         Voltar
       </button>
     </div>
@@ -72,7 +66,7 @@ input::placeholder {
   border-radius: 10px;
 }
 
-button.backgroundBlueTransparent > span {
+button.backgroundBlueTransparent>span {
   display: flex;
   align-items: center;
   text-align: center;

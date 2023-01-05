@@ -22,47 +22,44 @@
       <form class="">
         <div class="d-flex justify-content-evenly">
           <div class="col-9 col-sm-12 col-md-8 col-lg-2 mb-1">
-            <div class="form-group mb-3">
-              <label for="" class="fw-bolder">Valor de Crédito Aprovado:</label>
+            <!--valor credito-->
+            <label for="" class="fw-bolder">Valor de Crédito Aprovado:</label>
+            <div class="input-group mb-3">
+              <span class="input-group-text backgroundText fw-bolder" id="basic-addon1">R$</span>
               <input type="text" disabled class="form-control text-center form-control-sm backgroundInput fw-bold"
-                placeholder="R$ xxxx,xx" @keyup="mascaraMoney" :value="valueApprovedComputed.amount" />
+                placeholder="R$ xxxx,xx" :value="formatNumberMoney(valueApprovedComputed.amount)" />
             </div>
-            <div class="form-group mb-3">
-              <label for="" class="fw-bolder">Limite Max. Parcela:</label>
+            <!--Limite Max parcela-->
+            <label for="" class="fw-bolder">Limite Max. Parcela:</label>
+            <div class="input-group mb-3">
+              <span class="input-group-text backgroundText fw-bolder" id="basic-addon1">R$</span>
               <input type="text" disabled class="form-control text-center form-control-sm backgroundInput fw-bold"
                 placeholder="R$ xx,xx" :value="valueApprovedComputed.installments" />
             </div>
-            <div class="form-group mb-3">
-              <label for="" class="fw-bolder">Valor Total do Tratamento:</label>
+
+            <!--valor Total do tratamento-->
+            <label for="" class="fw-bolder">Valor Total do Tratamento:</label>
+            <div class="input-group mb-3">
+              <span class="input-group-text backgroundText fw-bolder" id="basic-addon1">R$</span>
               <input type="text" class="form-control text-center form-control-sm backgroundInput fw-bold"
                 placeholder="R$ " v-model="valueTotal" @keyup="mascaraMoney" />
             </div>
-            <div class="form-group mb-3">
-              <label for="" class="fw-bolder">Diferença a Pagar:</label>
+            <!--Diferença a pagar-->
+            <label for="" class="fw-bolder">Diferença a Pagar:</label>
+            <div class="input-group mb-3">
+              <span class="input-group-text backgroundText fw-bolder" id="basic-addon1">R$</span>
               <input type="text" disabled class="form-control text-center form-control-sm backgroundInput fw-bold"
                 placeholder="R$ " v-model="calcRemaining" />
             </div>
           </div>
           <div class="col-9 col-sm-12 col-md-8 col-lg-2 mb-1">
-            <!-- <div class="form-group mb-3">
-              <label class="text-center fw-bolder" for="">Meio de Pagamento:</label>
-              <select v-model.lazy="selectItem"
-                class="form-select form-select-sm backgroundSelect backgroundInput fw-bold text-center" name="payment"
-                id="payment">
-                <option value="-1" selected disabled>Forma de pagamento</option>
-                <option :value="index" v-for="(value, index) in arrayTypePayment" :key="index">
-                  {{ value }}
-                </option>
-              </select>
-            </div> -->
-
             <div class="input-group mb-3" v-for="(value, index) in installmentsFinancial" :key="index">
               <button class="btn w-25 btn-outline-secondary buttonGroup fw-bolder" type="button"
                 @click.prevent="selectItemParcel(value)">
                 {{ value.installments }}x
               </button>
               <input disabled type="text" class="form-control text-center form-control-md backgroundInput fw-bold"
-                placeholder="R$ " :value="value.amount" />
+                placeholder="R$ " :value="value.installmentValue" />
             </div>
           </div>
         </div>
@@ -168,36 +165,26 @@ export default {
           parseFloat(newValue.cardCredit) >
           parseFloat(valueApprovedComputed.value.vApproved)
         ) {
-          alert(
-            "Digite um valor valido ou Menor do que " + valor_approved.vApproved
-          );
+          alert("Digite um valor valido ou Menor do que " + valor_approved.vApproved);
           listValueTypePayment.cardCredit = "";
         }
         if (
-          parseFloat(newValue.debito) >
-          parseFloat(valueApprovedComputed.value.vApproved)
+          parseFloat(newValue.debito) > parseFloat(valueApprovedComputed.value.vApproved)
         ) {
-          alert(
-            "Digite um valor valido ou Menor do que " + valor_approved.vApproved
-          );
+          alert("Digite um valor valido ou Menor do que " + valor_approved.vApproved);
           listValueTypePayment.debito = "";
         }
         if (
-          parseFloat(newValue.pix) >
-          parseFloat(valueApprovedComputed.value.vApproved)
+          parseFloat(newValue.pix) > parseFloat(valueApprovedComputed.value.vApproved)
         ) {
-          alert(
-            "Digite um valor valido ou Menor do que " + valor_approved.vApproved
-          );
+          alert("Digite um valor valido ou Menor do que " + valor_approved.vApproved);
           listValueTypePayment.pix = "";
         }
         if (
           parseFloat(newValue.tedOrDoc) >
           parseFloat(valueApprovedComputed.value.vApproved)
         ) {
-          alert(
-            "Digite um valor valido ou Menor do que " + valor_approved.vApproved
-          );
+          alert("Digite um valor valido ou Menor do que " + valor_approved.vApproved);
           listValueTypePayment.tedOrDoc = "";
         }
       },
@@ -206,7 +193,6 @@ export default {
     //
 
     watch(valueTotal, () => {
-      console.log("watch:", valueApprovedComputed.value.amount);
       const formaValue = valueTotal.value.replace(".", "").replace(",", ".");
       calcRemaining.value = Math.abs(
         formaValue - valueApprovedComputed.value.amount
@@ -314,5 +300,9 @@ button.backgroundBlueTransparent>span {
 
 .color-black {
   color: #000000 !important;
+}
+
+.backgroundText {
+  background-color: #b5b5b5;
 }
 </style>

@@ -3,15 +3,20 @@
 
 export const formatNumber = (value) => {
   value = convertToFloatNumber(value);
+  console.log('func 01: ', value)
   return value.formatMoney(2, ",", ".");
 };
 //transforma a entrada em número float
 const convertToFloatNumber = function (value) {
   value = value.toString();
+  console.log('teste00:', value)
   if (value.indexOf(".") !== -1 && value.indexOf(",") !== -1) {
     if (value.indexOf(".") < value.indexOf(",")) {
+      console.log('teste 01: ', parseFloat(value.replace(/,/gi, "")))
       return parseFloat(value.replace(/,/gi, ""));
     } else {
+      console.log('teste 02: ', parseFloat(value.replace(/,/gi, "")))
+
       return parseFloat(value.replace(/\./gi, "").replace(/,/gi, "."));
     }
   } else {

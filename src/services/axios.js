@@ -2,11 +2,11 @@ import axios from "axios";
 import * as jose from "jose";
 import md5 from "md5";
 
-const company_id = "b00cd1fd-b20f-49f1-97a2-88407d36c7fd";
-const user_id = "31b86d3e-9790-4b88-9846-c337f16f385c";
+export const company_id = "b00cd1fd-b20f-49f1-97a2-88407d36c7fd";
+export const user_id = "31b86d3e-9790-4b88-9846-c337f16f385c";
 
 const api = axios.create({
-  baseURL: "http://177.136.201.182/api/",
+  baseURL: "https://miktech.com.br/api/",
   //baseURL: "http://localhost:3333/api/",
 });
 
